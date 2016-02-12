@@ -6,9 +6,10 @@ permalink: /resume/
 
 ---
 
-##**Experience**
+## **Experience**
 
-####Magic Grant Recipient
+#### Magic Grant Recipient
+
 **[The Brown Institute for Media Innovation](http://brown.stanford.edu)**
 
 *Stanford, CA – August 2015 - Present*
@@ -17,8 +18,9 @@ Recipient of a grant to develop open.contractors, a Web dashboard for journalist
 
 ___
 
-####Data Fellow
-**The Center for Investigative Reporting** 
+#### Data Fellow
+
+**[The Center for Investigative Reporting](https://www.revealnews.org/)** 
 
 *Emeryville, CA – June 2015 - Present*
 
@@ -26,8 +28,9 @@ Create web applications for the CIR Data Team and illustrate stories for Reveal,
 
 ___
 
-####Editor - PBS NewsHour Extra
-**The PBS NewsHour**
+#### Editor - PBS NewsHour Extra
+
+**[The PBS NewsHour](http://www.pbs.org/newshour/extra)**
 
 *Arlington, VA – April 2013 - July 2014*
 
@@ -35,8 +38,9 @@ Oversee daily operations and maintenance of PBS NewsHour's online educational re
 
 ___
 
-####Assistant Editor - Education
-**The PBS NewsHour**
+#### Assistant Editor - Education
+
+**[The PBS NewsHour](http://www.pbs.org/newshour/)**
 
 *Arlington, VA – June 2012 - April 2013*
 
@@ -44,7 +48,7 @@ Write, edit and produce articles and videos for the PBS NewsHour's online and ed
 
 ___
 
-##**Education**  
+## **Education**  
 
 Stanford University – *M.A. Journalism - 2015*
 
@@ -52,10 +56,10 @@ Washington University in St. Louis - *A.B. Jewish, Islamic and Near Eastern Stud
 
 ___
 
-##**Skills**
+## **Skills**
 
-####Applications:
+#### Applications:
 Adobe Illustrator/Photoshop, TileMill/Mapbox.js, QGIS, Final Cut Pro, Wordpress.
 
-####Programming languages:
+#### Programming languages:
 HTML/CSS, Javascript (including D3.js), Python, Bash, SQL.
