@@ -9,7 +9,7 @@ permalink: /resume/
 ##**Experience**
 
 ####Magic Grant Recipient
-**The Brown Institute for Media Innovation**
+**[The Brown Institute for Media Innovation](http://brown.stanford.edu)**
 
 *Stanford, CA – August 2015 - Present*
 
