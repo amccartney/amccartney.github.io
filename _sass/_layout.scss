@@ -1,27 +1,54 @@
 /**
  * Site header
  */
+
 .site-header {
-    border-top: 5px solid $grey-color-dark;
-    border-bottom: 1px solid $grey-color-light;
+    border-top: 5px solid $brand-color;
     min-height: 56px;
+    background-color: $background-color;
 
     // Positioning context for the mobile navigation icon
     position: relative;
 }
 
 .site-title {
-    font-size: 26px;
+    font-size: 30px;
     font-weight: 300;
     line-height: 56px;
-    letter-spacing: -1px;
+    letter-spacing: 1px;
     margin-bottom: 0;
     float: left;
+    color: $title-color;
+    font-family: $name-font-family;
+}
 
-    &,
-    &:visited {
-        color: $grey-color-dark;
+.trigger { margin: 30px 10px 25px 10px; }
+.trigger a {
+    border: 1px solid WhiteSmoke;
+    padding: 15px;
+    color: WhiteSmoke;
+    border-radius: 5px;
+    &:hover {
+        background-color: $brand-color;
+        color: WhiteSmoke;
+        text-decoration: none;
+        &:visited {
+            background-color: lighten($background-color, 10%);
+        }
     }
+}
+
+.home p {
+    color: WhiteSmoke;
+    font-style: italic;
+}
+
+.home { 
+    text-align: center;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .site-nav {
@@ -38,9 +65,20 @@
 
         // Gaps between nav items, but not on the last one
         &:not(:last-child) {
-            margin-right: 20px;
+            margin-right: 10px;
         }
     }
+
+    .trigger a {
+        border: none;
+        padding: auto;
+        border-radius: 0;
+        &:hover {
+            background-color: $background-color;
+            border-bottom: 3px solid $brand-color;
+        }
+    }
+    .trigger { margin: 0; }
 
     @include media-query($on-palm) {
         position: absolute;
@@ -92,19 +130,29 @@
     }
 }
 
-
-
 /**
  * Site footer
  */
 .site-footer {
     border-top: 1px solid $grey-color-light;
     padding: $spacing-unit 0;
+    background-color: $background-color;
+}
+.site-footer {
+    height: 129px;
+} 
+
+.push {
+    height: 170px; /* .push must be the same height as footer */
 }
 
 .footer-heading {
     font-size: 18px;
     margin-bottom: $spacing-unit / 2;
+}
+
+.site-footer .fa {
+    margin-right: $spacing-unit / 2;
 }
 
 .contact-list,
@@ -132,8 +180,8 @@
 }
 
 .footer-col-2 {
-    width: -webkit-calc(20% - (#{$spacing-unit} / 2));
-    width:         calc(20% - (#{$spacing-unit} / 2));
+    width: -webkit-calc(30% - (#{$spacing-unit} / 2));
+    width:         calc(30% - (#{$spacing-unit} / 2));
 }
 
 .footer-col-3 {
@@ -180,13 +228,16 @@
     list-style: none;
 
     > li {
-        margin-bottom: $spacing-unit;
+        padding: $spacing-unit 0;
+        &:not(:last-child) {
+            border-bottom: 3px solid lighten($background-color, 10%);
+        } 
     }
 }
 
 .post-meta {
     font-size: $small-font-size;
-    color: $grey-color;
+    color: lighten($background-color, 25%);
 }
 
 .post-link {

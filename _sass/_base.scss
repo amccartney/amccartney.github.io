@@ -2,17 +2,29 @@
  * Reset some basic elements
  */
 body, h1, h2, h3, h4, h5, h6,
-p, blockquote, pre, hr,
+p, blockquote, pre,
 dl, dd, ol, ul, figure {
     margin: 0;
     padding: 0;
 }
 
+hr { 
+    margin: $spacing-unit 0; 
+    border: 2px solid lighten($background-color, 10%);
+}
 
+.post-content h2 {
+    color: $brand-color;
+}
 
 /**
  * Basic styling
  */
+
+html, body {
+    height:100%;
+}
+
 body {
     font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
     color: $text-color;
@@ -24,7 +36,17 @@ body {
     font-feature-settings: "kern" 1;
     font-kerning: normal;
 }
+#sticky-footer-wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -170px;
+}
 
+body#index { 
+    background-color:$background-color; 
+    border-top: 5px solid mediumaquamarine;
+}
 
 
 /**
@@ -37,16 +59,47 @@ ul, ol, dl, figure,
     margin-bottom: $spacing-unit / 2;
 }
 
+h1#index-title { 
+    font-size: 4.2em;
+    color: WhiteSmoke; 
+    font-family: $name-font-family;
+    margin-bottom: 0;
+}
 
+#to-top { 
+    padding: 10px 20px; 
+    background-color: $background-color;
+    color: $brand-color; 
+    border-bottom: 1px solid $brand-color;
+    position:fixed;
+    width: 100%;
+    top:-50px; 
+    text-align: center;
+    z-index: 1000;
+    transition: top .4s ease;
+    &:hover {
+        background-color: lighten($background-color, 10%);
+    }
+}
+#to-top.down { top:0; transition: top .4s ease; }
 
 /**
  * Images
  */
 img {
-    max-width: 100%;
+    width: 100%;
     vertical-align: middle;
+    border: 1px solid darken($background-color, 5%);
 }
-
+#index-logo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: none;
+}
+#index-logo:hover {
+    background-color: lighten($background-color, 10%);
+}
 
 
 /**
@@ -93,14 +146,8 @@ h1, h2, h3, h4, h5, h6 {
 a {
     color: $brand-color;
     text-decoration: none;
-
-    &:visited {
-        color: darken($brand-color, 15%);
-    }
-
     &:hover {
-        color: $text-color;
-        text-decoration: underline;
+        text-decoration: none;
     }
 }
 
@@ -130,13 +177,13 @@ blockquote {
 pre,
 code {
     font-size: 15px;
-    border: 1px solid $grey-color-light;
-    border-radius: 3px;
-    background-color: #eef;
+    border-radius: 5px;
+    background-color: lighten($background-color, 10%);
 }
 
 code {
-    padding: 1px 5px;
+    padding: 2px 5px;
+    color: $brand-color;
 }
 
 pre {
@@ -186,6 +233,22 @@ pre {
     }
 }
 
+
+
+/**
+ * Table
+ */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+td , th {
+    padding: 10px;
+}
+th {
+    border-bottom: 1px solid $brand-color;
+    font-weight: bold;
+}
 
 
 /**
