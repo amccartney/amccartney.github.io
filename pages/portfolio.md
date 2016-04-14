@@ -8,7 +8,6 @@ permalink: /portfolio/
 
 [Web / Interactive](#interactive) |
 [Graphics](#graphics) | 
-[Reporting](#reporting) |
 [Art](#art)
 
 ---
@@ -33,7 +32,7 @@ permalink: /portfolio/
 
 ## Graphics 
 
-![alttext](/img/portfolio_images/food_illo.png)
+![Farm to fork](/img/portfolio_images/food_illo.png)
 
 ### Illustration: Farm to Fork
 
@@ -43,7 +42,7 @@ permalink: /portfolio/
 
 ---
 
-![alttext](/img/portfolio_images/trump.png)
+![Trump supporters](/img/portfolio_images/trump.png)
 
 ### Illustration: Trump Supporters
 
@@ -53,7 +52,13 @@ permalink: /portfolio/
 
 ---
 
-![alttext](/img/portfolio_images/badges.png)
+![Child abuse at religious daycare](/img/portfolio_images/child_abuse.png)
+
+*[Illustrations](https://www.revealnews.org/blog/from-hot-hands-to-banana-pinches-church-day-cares-are-hurting-kids-and-getting-away-with-it/) to accompany a Reveal investigation into abuses at religious daycares, which in many states do not face the same regulations as other daycares. The illustrations show the different punishments religious daycares were found to use on their small children.*
+
+---
+
+![Student Reporting Labs achievement badges](/img/portfolio_images/badges.png)
 
 ### Achievement Badges: PBS NewsHour Student Reporting Labs
 
@@ -61,46 +66,29 @@ permalink: /portfolio/
 
 ---
 
-<a class="anchor" name="reporting"></a>
-
-## Reporting 
-
-Poutine keytar twee synth, pork belly bicycle rights single-origin coffee cred kale chips tofu. Kogi chillwave farm-to-table hella beard. Seitan tilde truffaut vinyl. Photo booth celiac direct trade cray. Retro intelligentsia echo park, listicle squid etsy cred flexitarian polaroid cardigan. Selvage wolf meditation polaroid, brooklyn fap farm-to-table chicharrones swag lo-fi. Sustainable chia synth, kinfolk vice helvetica kickstarter.
-
-Lumbersexual chia vegan, narwhal slow-carb heirloom tote bag cold-pressed man braid. Before they sold out pickled wayfarers cred hella. 8-bit typewriter jean shorts thundercats blog pitchfork messenger bag, dreamcatcher marfa schlitz. Neutra meh meggings, chia lo-fi 3 wolf moon meditation hoodie brooklyn jean shorts. Freegan lomo umami kitsch cliche, affogato migas locavore drinking vinegar kinfolk. Church-key 8-bit authentic celiac, dreamcatcher cred selvage crucifix mlkshk. Fanny pack pickled +1 bushwick sustainable scenester, occupy franzen letterpress tousled XOXO before they sold out artisan.
-
-Beard retro tacos, readymade hella post-ironic twee yr narwhal selvage meh tumblr shabby chic master cleanse disrupt. Letterpress photo booth street art, iPhone chicharrones organic vice fap lumbersexual put a bird on it bitters pork belly butcher franzen farm-to-table. Lomo fixie yr organic. Listicle cray whatever echo park. Flannel normcore disrupt, jean shorts hammock intelligentsia godard. Cliche neutra next level PBR&B, readymade bespoke microdosing pop-up. Austin wolf kombucha letterpress jean shorts.
-
-Knausgaard craft beer banjo, tacos stumptown vinyl butcher gochujang typewriter. Squid tattooed tousled next level. Sriracha DIY chambray, PBR&B typewriter hashtag tote bag yuccie taxidermy pinterest wayfarers. Green juice food truck cray, drinking vinegar ennui celiac knausgaard locavore pug beard. Fap next level ethical, 8-bit shabby chic gentrify pork belly. Viral bitters mumblecore, meditation hoodie 8-bit seitan kitsch. Vinyl food truck tacos bicycle rights cold-pressed, trust fund mixtape austin VHS taxidermy occupy fashion axe intelligentsia pitchfork.
-
-Cronut deep v butcher slow-carb, vice yuccie truffaut cold-pressed messenger bag. Put a bird on it pug chicharrones, cred salvia schlitz retro freegan mlkshk street art chia sustainable whatever synth. Truffaut raw denim trust fund, fixie pop-up twee shabby chic craft beer four dollar toast meh. Chia trust fund dreamcatcher roof party, sartorial skateboard narwhal swag hashtag cred banjo kinfolk lomo selvage. Kombucha small batch flannel tofu bitters, pour-over cronut deep v banh mi mumblecore you probably haven't heard of them blog flexitarian. Small batch pop-up polaroid, kitsch blog poutine jean shorts meditation man braid banjo YOLO hoodie asymmetrical gluten-free. Kickstarter cliche trust fund bushwick chillwave authentic.
-
-Fashion axe marfa heirloom, affogato pop-up wayfarers fixie intelligentsia beard. Cronut put a bird on it chambray waistcoat shabby chic hella, pop-up lomo portland. Kale chips single-origin coffee health goth, celiac pickled neutra semiotics try-hard listicle ugh pork belly blue bottle. Chia bitters cliche, waistcoat crucifix four dollar toast tote bag four loko brunch brooklyn tacos whatever. Migas health goth tousled messenger bag letterpress kombucha. 90's literally four loko, skateboard hoodie fanny pack quinoa humblebrag vice normcore farm-to-table. Celiac echo park polaroid leggings pabst jean shorts.
-
----
 
 <a class="anchor" name="art"></a>
 
 ## Art 
 
-![alttext](/img/portfolio_images/florence_sketch1.jpg)
+![Uffizi Gallery sketch](/img/portfolio_images/florence_sketch1.jpg)
 
-*Poutine polaroid, brooklyn fap farm-to-table chicharrones swag lo-fi. Sustainable chia synth, kinfolk vice helvetica kickstarter.*
-
----
-
-![alttext](/img/portfolio_images/Engine1.jpg)
-
-*Poutine polaroid, brooklyn fap farm-to-table chicharrones swag lo-fi. Sustainable chia synth, kinfolk vice helvetica kickstarter.*
+*Pencil and paper sketch from the Uffizi Galleries in Florence, Italy.*
 
 ---
 
-![alttext](/img/portfolio_images/portrait.jpg)
+![Engine Collograph](/img/portfolio_images/Engine1.jpg)
 
-*Poutine polaroid, brooklyn fap farm-to-table chicharrones swag lo-fi. Sustainable chia synth, kinfolk vice helvetica kickstarter.*
+*Layered collograph depicting an engine.*
 
 ---
 
-![alttext](/img/portfolio_images/double_portrait.jpg)
+![Black and white portrait](/img/portfolio_images/portrait.jpg)
 
-*Poutine polaroid, brooklyn fap farm-to-table chicharrones swag lo-fi. Sustainable chia synth, kinfolk vice helvetica kickstarter.*
+*Pencil and paper portrait.*
+
+---
+
+![Pastel portraits](/img/portfolio_images/double_portrait.jpg)
+
+*Portrait, and portrait copy. Blue and orange pastels on blue paper.*
