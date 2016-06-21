@@ -20,7 +20,7 @@ permalink: /portfolio/
 
 ### The Lost & The Found
 
-[Go to project](lostandfound.revealnews.org)
+[Go to project](http://lostandfound.revealnews.org)
 
 *My first major news application project for the Center for Investigative Reporting. This application accompanied our investigation [Left for Dead](http://revealnews.org/leftfordead) which looked into the broken law enforcement systems that prevent unidentified bodies from being identified, and missing persons from being found.*
 
