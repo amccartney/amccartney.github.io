@@ -26,7 +26,7 @@ permalink: /portfolio/
 
 *The application took data from the NamUs databases of missing and unidentified persons and allows users to search through both databases simultaneously, hopefully making in easier for the public to assist law enforcement in making breakthroughs on cold cases. I was responsible for the design and interaction of the site.*
 
-##### Awards
+#### Awards
 -   2016 National Edward R. Murrow Award for Website -- Small Online News Organization division
 -   2016 Society of Professional Journalists Award for Online Public Service in Journalism, Independent outlet
 
