@@ -4,8 +4,6 @@ title: Pride and Prejudice
 permalink: /pride-and-prejudice/
 ---
 
-# PRIDE AND PREJUDICE
-
 By Jane Austen
 
 ### Chapter 1
