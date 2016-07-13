@@ -8,11 +8,21 @@ permalink: /resume/
 
 ## **Experience**
 
+#### Associate Program Developer
+
+**[The Brown Institute for Media Innovation](http://brown.stanford.edu)**
+
+*Stanford, CA – July 2016 - Present*
+
+Work with grant recipients and prospectives at Stanford to develop and execute their Magic Grant projects. Magic Grants are given to those working at the intersection of journalism and technology, who seek to push the boundaries of reporting and digital tools for journalists.
+
+___
+
 #### Magic Grant Recipient
 
 **[The Brown Institute for Media Innovation](http://brown.stanford.edu)**
 
-*Stanford, CA – August 2015 - Present*
+*Stanford, CA – August 2015 - July 2016*
 
 Recipient of a grant to develop open.contractors, a Web dashboard for journalists who want to analyze, visualize and interact with contractor data from the Department of Defense.
 
