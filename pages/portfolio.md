@@ -7,14 +7,14 @@ permalink: /portfolio/
 ---
 
 [Web / Interactive](#interactive) |
-[Graphics](#graphics) | 
+[Graphics](#graphics) |
 [Art](#art)
 
 ---
 
 <a class="anchor" name="interactive"></a>
 
-## Web / Interactive 
+## Web / Interactive
 
 ![alttext](/img/portfolio_images/lostandfound.png)
 
@@ -27,16 +27,26 @@ permalink: /portfolio/
 *The application took data from the NamUs databases of missing and unidentified persons and allows users to search through both databases simultaneously, hopefully making in easier for the public to assist law enforcement in making breakthroughs on cold cases. I was responsible for the design and interaction of the site.*
 
 #### Awards
--   2016 National Edward R. Murrow Award for Website -- Small Online News Organization division
+-   2016 National Edward R. Murrow Award for Website: Small Online News Organization division
 -   2016 Society of Professional Journalists Award for Online Public Service in Journalism, Independent outlet
+-   2016 Emmy Award [Nominee](https://www.revealnews.org/press/revealcir-nominated-for-7-news-documentary-emmys/): Multimedia News Package
 
 ---
 
 <a class="anchor" name="graphics"></a>
 
-## Graphics 
+## Graphics
 
-![Farm to fork](/img/portfolio_images/food_illo.png)
+<div class="graphics-slider">
+    <ul>
+        <li><img src="/img/portfolio_images/food_illo.png"></li>
+        <li><img src="/img/portfolio_images/trump.png"></li>
+        <li><img src="/img/portfolio_images/child_abuse.png"></li>
+        <li><img src="/img/portfolio_images/badges.png"></li>
+    </ul>
+</div>
+
+![Farm to fork]()
 
 ### Illustration: Farm to Fork
 
@@ -46,7 +56,7 @@ permalink: /portfolio/
 
 ---
 
-![Trump supporters](/img/portfolio_images/trump.png)
+![Trump supporters]()
 
 ### Illustration: Trump Supporters
 
@@ -56,7 +66,7 @@ permalink: /portfolio/
 
 ---
 
-![Child abuse at religious daycare](/img/portfolio_images/child_abuse.png)
+![Child abuse at religious daycare]()
 
 *[Illustrations](https://www.revealnews.org/blog/from-hot-hands-to-banana-pinches-church-day-cares-are-hurting-kids-and-getting-away-with-it/) to accompany a Reveal investigation into abuses at religious daycares, which in many states do not face the same regulations as other daycares. The illustrations show the different punishments religious daycares were found to use on their small children.*
 
@@ -73,7 +83,7 @@ permalink: /portfolio/
 
 <a class="anchor" name="art"></a>
 
-## Art 
+## Art
 
 ![Uffizi Gallery sketch](/img/portfolio_images/florence_sketch1.jpg)
 

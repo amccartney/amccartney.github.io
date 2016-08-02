@@ -2,3 +2,6 @@ _site
 .sass-cache
 .jekyll-metadata
 s3_website.yml
+Gemfile
+Gemfile.lock
+feed.xml

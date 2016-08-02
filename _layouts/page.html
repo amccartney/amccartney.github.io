@@ -33,8 +33,9 @@
       {% include footer.html %}
 
   <script src="{{ site.url }}/js/jquery.min.js"></script>  
+  <script src="{{ '/js/slippry.min.js' | prepend: site.baseurl }}"></script>
   <script>
-    $(function() {
+    jQuery(document).ready(function($) {
 
       // Activates "scroll to top" button once viewer scrolls down the page
       $(window).scroll(function() {
@@ -43,6 +44,7 @@
           else { $('#to-top').removeClass('down'); }
       });
 
+      jQuery('.graphics-slider').slippry()
 
     });
   </script>
