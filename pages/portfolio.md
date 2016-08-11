@@ -4,11 +4,11 @@ title: Portfolio
 permalink: /portfolio/
 ---
 
----
-
-[Web / Interactive](#interactive) |
-[Graphics](#graphics) |
-[Art](#art)
+<ul class="nav nav-pills">
+  <li role="presentation" class="active"><a href="#interactive">Web/Interactive</a></li>
+  <li role="presentation"><a href="#graphics">Graphics</a></li>
+  <li role="presentation"><a href="#art">Art</a></li>
+</ul>
 
 ---
 
@@ -37,72 +37,72 @@ permalink: /portfolio/
 
 ## Graphics
 
-<div class="graphics-slider">
-    <ul>
-        <li><img src="/img/portfolio_images/food_illo.png"></li>
-        <li><img src="/img/portfolio_images/trump.png"></li>
-        <li><img src="/img/portfolio_images/child_abuse.png"></li>
-        <li><img src="/img/portfolio_images/badges.png"></li>
-    </ul>
+<div class='row'>
+      <div class="btn-group">
+        <button class="btn btn-primary project-toggler active" type="button" data-switch-set="graphics-slider" data-target="#one">1</button>
+        <button class="btn btn-primary project-toggler" type="button" data-switch-set="grant-project-set" data-target="#two">2</button>
+        <button class="btn btn-primary project-toggler" type="button" data-switch-set="grant-project-set" data-target="#three">3</button>
+        <button class="btn btn-primary project-toggler" type="button" data-switch-set="grant-project-set" data-target="#four">4</button>
+      </div>
 </div>
 
-![Farm to fork]()
+<div class="graphics-slider">
+    <div title="one" alt="one" id="one" class="project-toggle">
+        <img class="project-art art" src="/img/portfolio_images/food_illo.png" />
+        <p>Illustration for Reveal's 'Farm to Fork' episode, which exposed the pathways that our food take on the way to the supermarket.</p>
+    </div>
 
-### Illustration: Farm to Fork
+    <div title="two" alt="two" id="two" class="project-toggle" style="display:none;">
+        <img class="project-art art" src="/img/portfolio_images/trump.png" />
+        <p>Illustration for Reveal's 'Pumped on Trump' episode, which examined Donald Trump's supporters in the 2016 presidential race.</p>
+    </div>
 
-[Go to project](https://www.revealnews.org/episodes/farm-to-fork-uncovering-hazards-in-our-food-systems/)
+    <div title="three" alt="three" id="three" class="project-toggle" style="display:none;">
+        <img class="project-art art" src="/img/portfolio_images/child_abuse.png" />
+        <p>Illustrations to accompany a Reveal investigation into abuses at religious daycares, which in many states do not face the same regulations as other daycares. The illustrations show the different punishments religious daycares were found to use on their small children.</p>
+    </div>
 
-*Illustration for Reveal's "Farm to Fork" episode, which exposed the pathways that our food take on the way to the supermarket.*
+    <div title="four" alt="four" id="four" class="project-toggle" style="display:none;">
+        <img class="project-art art" src="/img/portfolio_images/badges.png" />
+        <p>These badges were designed to mark and reward student achievements in the PBS NewsHour Student Reporting Labs(SRL) program. SRL offers a comprehensive curriculum to introduce middle and high school students to video journalism, and is being used in more than 60 schools around the country.</p>
+    </div>
 
----
-
-![Trump supporters]()
-
-### Illustration: Trump Supporters
-
-[Go to project](https://www.revealnews.org/episodes/pumped-on-trump/)
-
-*Illustration for Reveal's "Pumped on Trump" episode, which examined Donald Trump's supporters in the 2016 presidential race.*
-
----
-
-![Child abuse at religious daycare]()
-
-*[Illustrations](https://www.revealnews.org/blog/from-hot-hands-to-banana-pinches-church-day-cares-are-hurting-kids-and-getting-away-with-it/) to accompany a Reveal investigation into abuses at religious daycares, which in many states do not face the same regulations as other daycares. The illustrations show the different punishments religious daycares were found to use on their small children.*
-
----
-
-![Student Reporting Labs achievement badges](/img/portfolio_images/badges.png)
-
-### Achievement Badges: PBS NewsHour Student Reporting Labs
-
-*These badges were designed to mark and reward student achievements in the [PBS NewsHour Student Reporting Labs](http://studentreportinglabs.com)(SRL) program. SRL offers a comprehensive curriculum to introduce middle and high school students to video journalism, and is being used in more than 60 schools around the country.*
+</div>
 
 ---
-
 
 <a class="anchor" name="art"></a>
 
 ## Art
 
-![Uffizi Gallery sketch](/img/portfolio_images/florence_sketch1.jpg)
+<div class='row'>
+      <div class="btn-group">
+        <button class="btn btn-primary art-toggler active" type="button" data-switch-set="art-slider" data-target="#one-art">1</button>
+        <button class="btn btn-primary art-toggler" type="button" data-switch-set="art-slider" data-target="#two-art">2</button>
+        <button class="btn btn-primary art-toggler" type="button" data-switch-set="art-slider" data-target="#three-art">3</button>
+        <button class="btn btn-primary art-toggler" type="button" data-switch-set="art-slider" data-target="#four-art">4</button>
+      </div>
+</div>
 
-*Pencil and paper sketch from the Uffizi Galleries in Florence, Italy.*
+<div class="art-slider">
+    <div title="one" alt="one" id="one-art" class="art-toggle">
+        <img class="project-art art" src="/img/portfolio_images/florence_sketch1.jpg" />
+        <p><em>Pencil and paper sketch from the Uffizi Galleries in Florence, Italy.</em></p>
+    </div>
 
----
+    <div title="two" alt="two" id="two-art" class="art-toggle" style="display:none;">
+        <img class="project-art art" src="/img/portfolio_images/Engine1.jpg" />
+        <p><em>Layered collograph depicting an engine.</em></p>
+    </div>
 
-![Engine Collograph](/img/portfolio_images/Engine1.jpg)
+    <div title="three" alt="three" id="three-art" class="art-toggle" style="display:none;">
+        <img class="project-art art" src="/img/portfolio_images/portrait.jpg" />
+        <p><em>Pencil and paper portrait.</em></p>
+    </div>
 
-*Layered collograph depicting an engine.*
+    <div title="four" alt="four" id="four-art" class="art-toggle" style="display:none;">
+        <img class="project-art art" src="/img/portfolio_images/double_portrait.jpg" />
+        <p><em>Portrait, and portrait copy. Blue and orange pastels on blue paper.</em></p>
+    </div>
 
----
-
-![Black and white portrait](/img/portfolio_images/portrait.jpg)
-
-*Pencil and paper portrait.*
-
----
-
-![Pastel portraits](/img/portfolio_images/double_portrait.jpg)
-
-*Portrait, and portrait copy. Blue and orange pastels on blue paper.*
+</div>

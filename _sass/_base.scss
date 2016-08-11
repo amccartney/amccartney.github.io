@@ -9,7 +9,7 @@ dl, dd, ol, ul, figure {
 }
 
 hr {
-    margin: $spacing-unit 0;
+    margin: $spacing-unit*2 0;
     border: 2px solid lighten($background-color, 10%);
 }
 

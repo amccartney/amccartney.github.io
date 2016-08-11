@@ -5,3 +5,4 @@ s3_website.yml
 Gemfile
 Gemfile.lock
 feed.xml
+*.lock
