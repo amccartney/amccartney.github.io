@@ -39,27 +39,31 @@
 
       // Activates "scroll to top" button once viewer scrolls down the page
       $(window).scroll(function() {
-          var scroll = $(window).scrollTop();
-          if (scroll >= 300) { $('#to-top').addClass('down'); }
-          else { $('#to-top').removeClass('down'); }
+        var scroll = $(window).scrollTop();
+        if (scroll >= 300) { $('#to-top').addClass('down'); }
+        else { $('#to-top').removeClass('down'); }
       });
 
       $('.project-toggler').click(function(){
-          $('.project-toggler').removeClass('active');
-          $(this).addClass('active');
-          var target = $(this).attr('data-target')
-          $('.project-toggle').hide();
-          $(target).show();
-        });
+        $('.project-toggler').removeClass('active');
+        $(this).addClass('active');
+        var target = $(this).attr('data-target')
+        $('.project-toggle').hide();
+        $(target).show();
+      });
 
-        $('.art-toggler').click(function(){
-            $('.art-toggler').removeClass('active');
-            $(this).addClass('active');
-            var target = $(this).attr('data-target')
-            $('.art-toggle').hide();
-            $(target).show();
-          });
+      $('.art-toggler').click(function(){
+        $('.art-toggler').removeClass('active');
+        $(this).addClass('active');
+        var target = $(this).attr('data-target')
+        $('.art-toggle').hide();
+        $(target).show();
+      });
 
+      var page_title = '{{ page.title }}'
+        , id_name = page_title + '-nav';
+
+      $('#' + id_name).addClass('active');
     });
   </script>
 

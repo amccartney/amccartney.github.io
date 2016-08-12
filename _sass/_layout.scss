@@ -73,7 +73,8 @@
         border: none;
         padding: auto;
         border-radius: 0;
-        &:hover {
+        &:hover,
+        &.active {
             background-color: $background-color;
             border-bottom: 3px solid $brand-color;
         }
