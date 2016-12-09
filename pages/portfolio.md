@@ -29,7 +29,7 @@ permalink: /portfolio/
 #### Awards
 -   2016 National Edward R. Murrow Award for Website: Small Online News Organization division
 -   2016 Society of Professional Journalists Award for Online Public Service in Journalism, Independent outlet
--   2016 Emmy Award [Nominee](https://www.revealnews.org/press/revealcir-nominated-for-7-news-documentary-emmys/): Multimedia News Package
+-   2016 News and Documentary Emmy Award Winner: Multimedia News Package
 
 ---
 
