@@ -16,7 +16,7 @@ permalink: /portfolio/
 
 ## Web / Interactive
 
-![Open Contractors](/img/portfolio_images/opencontractors2.mov)
+<!-- ![Open Contractors](/img/portfolio_images/opencontractors2.mov)
 
 ### Open Contractors
 
@@ -27,7 +27,7 @@ permalink: /portfolio/
 
 ### Brown Institute 2016 Showcase site
 
-*Did all the code, animations and illustrations for the site for the [2016 Brown Institute showcase](https://browninstitute.github.io/showcase-2016/).*
+*Did all the code, animations and illustrations for the site for the [2016 Brown Institute showcase](https://browninstitute.github.io/showcase-2016/).* -->
 
 ![The Lost and the Found](/img/portfolio_images/lostandfound.png)
 
