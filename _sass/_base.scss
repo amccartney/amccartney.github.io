@@ -13,8 +13,15 @@ hr {
     border: 2px solid lighten($background-color, 10%);
 }
 
-.post-content h2 {
-    color: $brand-color;
+.post-content {
+  h2 {
+    color: $grey-color-light;
+    font-weight: 800;
+  }
+  h3 {
+    font-weight: 300;
+    margin-top: 50px;
+  }
 }
 
 /**
@@ -58,11 +65,14 @@ ul, ol, dl, figure,
     margin-bottom: $spacing-unit / 2;
 }
 
-p { margin-bottom: $spacing-unit }
+p {
+  margin-bottom: $spacing-unit;
+  line-height: 1.7em;
+}
 
 h1#index-title {
     font-size: 4.2em;
-    color: WhiteSmoke;
+    color: $text-color;
     font-family: $name-font-family;
     margin: 20px 0;
     line-height: 46pt;
@@ -71,7 +81,7 @@ h1#index-title {
 #to-top {
     padding: 10px 20px;
     background-color: $background-color;
-    color: $brand-color;
+    color: $text-color;
     border-bottom: 1px solid $brand-color;
     position:fixed;
     width: 100%;
@@ -122,6 +132,7 @@ figcaption {
  */
 ul, ol {
     margin-left: $spacing-unit;
+    line-height: 1.7em;
 }
 
 li {
@@ -146,7 +157,8 @@ h1, h2, h3, h4, h5, h6 {
  * Links
  */
 a {
-    color: $brand-color;
+    color: $text-color;
+    border-bottom: 3px solid $brand-color;
     text-decoration: none;
     &:hover {
         text-decoration: none;

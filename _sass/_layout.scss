@@ -18,19 +18,20 @@
     letter-spacing: 1px;
     margin-bottom: 0;
     float: left;
-    color: $title-color;
+    color: $text-color;
     font-family: $name-font-family;
+    border-bottom: none;
 }
 
 .trigger { margin: 40px 10px 25px 10px; }
 .trigger a {
-    border: 1px solid WhiteSmoke;
+    border: 1px solid $text-color;
     padding: 15px;
-    color: WhiteSmoke;
+    color: $text-color;
     border-radius: 5px;
     &:hover {
         background-color: $brand-color;
-        color: WhiteSmoke;
+        color: $text-color;
         text-decoration: none;
         &:visited {
             background-color: lighten($background-color, 10%);
@@ -39,7 +40,7 @@
 }
 
 .home p {
-    color: WhiteSmoke;
+    color: $text-color;
     font-style: italic;
 }
 
@@ -49,6 +50,19 @@
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.nav-pills {
+  li {
+    a { border-radius: 0; }
+    &.active a,
+    &.active a:focus,
+    &.active a:hover {
+      background-color: rgba(0,0,0,.05);
+      color: $text-color;
+      border-bottom: 3px solid rgba(0,0,0,.05);
+    }
+  }
 }
 
 .site-nav {
@@ -138,9 +152,8 @@
     border-top: 1px solid $grey-color-light;
     padding: $spacing-unit 0;
     background-color: $background-color;
-}
-.site-footer {
     height: 129px;
+    a { border-bottom: none; }
 }
 
 .push {
@@ -212,7 +225,31 @@
 }
 
 .nav-pills { margin-left: 0; }
-.btn-group { padding: 15px; }
+.btn-group {
+  padding: 15px;
+  button.btn {
+    background-color: transparent;
+    color: $text-color;
+    border: none;
+    border-bottom: 3px solid aquamarine;
+    &+.btn { margin-left: 0; }
+    &:first-child:not(:last-child):not(.dropdown-toggle),
+    &:last-child:not(:first-child) {
+      border-radius: 0;
+    }
+    &.active,
+    &:active,
+    &:focus {
+      background-color: rgba(0,0,0,.05);
+      border: none;
+      color: $text-color;
+      border-bottom: 3px solid rgba(0,0,0,.05);
+      box-shadow: none;
+      outline: none;
+    }
+    &:hover { background-color: rgba(0,0,0,.05) }
+  }
+}
 .graphics-slider p, .art-slider p { margin-top: 20px; }
 
 /**
@@ -258,9 +295,11 @@
 }
 
 .post-title {
-    font-size: 42px;
+    font-size: 4em;
+    font-weight: 800;
     letter-spacing: -1px;
     line-height: 1;
+    color: $grey-color;
 
     @include media-query($on-laptop) {
         font-size: 36px;
