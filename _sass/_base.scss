@@ -10,7 +10,7 @@ dl, dd, ol, ul, figure {
 
 hr {
     margin: $spacing-unit*2 0;
-    border: 2px solid lighten($background-color, 10%);
+    border: 3px solid $grey-color-light;
 }
 
 .post-content {
