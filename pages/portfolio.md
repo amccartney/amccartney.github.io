@@ -2,6 +2,7 @@
 layout: page
 title: Portfolio
 permalink: /portfolio/
+published: true
 ---
 
 <ul class="nav nav-pills">
@@ -16,18 +17,15 @@ permalink: /portfolio/
 
 ## Web / Interactive
 
-<!-- ![Open Contractors](/img/portfolio_images/opencontractors2.mov)
+<div class="videoWrapper">
+
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/LEbOG-Tk3XE" frameborder="0" allowfullscreen></iframe>
+</div>
 
 ### Open Contractors
 
 *Currently in production, launching in June 2017. Open Contractors is a web application for exploring and making sense of Department of Defense contracting data. I designed and built the Django application and interface for interacting with the data. Open Contractors is a grant project funded by the Brown Institute for Media Innovation.*
 
-
-![Brown Institute Showcase 2016 site](/img/portfolio_images/showcase_2016.png)
-
-### Brown Institute 2016 Showcase site
-
-*Did all the code, animations and illustrations for the site for the [2016 Brown Institute showcase](https://browninstitute.github.io/showcase-2016/).* -->
 
 ![The Lost and the Found](/img/portfolio_images/lostandfound.png)
 
