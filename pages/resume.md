@@ -2,6 +2,7 @@
 layout: page
 title: Resume
 permalink: /resume/
+published: true
 ---
 
 ### Associate Program Developer
@@ -50,6 +51,14 @@ Oversee daily operations and maintenance of PBS NewsHour's online educational re
 *Arlington, VA – June 2012 - April 2013*
 
 Write, edit and produce articles and videos for the PBS NewsHour's online and educational resources divisions. Design infographics for the web and graphics for broadcast. Mentor high school students in the Student Reporting Labs program to produce original video reports about issues in their communities. Head copy editor of the NewsHour's education team inauguration coverage.
+
+___
+
+## Teaching
+
+### J216: New Media Master’s Project Seminar [(Advanced Multimedia)](https://journalism.berkeley.edu/curriculum/newmedia/)
+
+*UC Berkeley Graduate School of Journalism, Jan. 2016 - May 2016*
 
 ___
 
