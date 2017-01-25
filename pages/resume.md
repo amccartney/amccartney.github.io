@@ -56,7 +56,9 @@ ___
 
 ## Teaching
 
-### J216: New Media Master’s Project Seminar [(Advanced Multimedia)](https://journalism.berkeley.edu/curriculum/newmedia/)
+### J216: New Media Master’s Project Seminar 
+
+**[(Advanced Multimedia)](https://journalism.berkeley.edu/curriculum/newmedia/)**
 
 *UC Berkeley Graduate School of Journalism, Jan. 2016 - May 2016*
 
