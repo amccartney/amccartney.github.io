@@ -64,7 +64,7 @@ permalink: /portfolio/
     </div>
 
     <div title="two" alt="two" id="two" class="project-toggle" style="display:none;">
-        <img class="project-art art" src="/img/portfolio_images/trump.jpg" />
+        <img class="project-art art" src="/img/portfolio_images/trump.png" />
         <p>Illustration for Reveal's 'Pumped on Trump' episode, which examined Donald Trump's supporters in the 2016 presidential race.</p>
     </div>
 
