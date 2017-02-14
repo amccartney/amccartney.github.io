@@ -2,7 +2,6 @@
 layout: page
 title: Portfolio
 permalink: /portfolio/
-published: true
 ---
 
 <ul class="nav nav-pills">
@@ -38,9 +37,9 @@ published: true
 *The application took data from the NamUs databases of missing and unidentified persons and allows users to search through both databases simultaneously, hopefully making in easier for the public to assist law enforcement in making breakthroughs on cold cases. I was responsible for the design and interaction of the site.*
 
 #### Awards
--   2016 News and Documentary Emmy Award Winner: Multimedia News Package
 -   2016 National Edward R. Murrow Award for Website: Small Online News Organization division
 -   2016 Society of Professional Journalists Award for Online Public Service in Journalism, Independent outlet
+-   2016 News and Documentary Emmy Award Winner: Multimedia News Package
 
 ---
 
@@ -54,6 +53,7 @@ published: true
         <button class="btn btn-primary project-toggler" type="button" data-switch-set="grant-project-set" data-target="#two">2</button>
         <button class="btn btn-primary project-toggler" type="button" data-switch-set="grant-project-set" data-target="#three">3</button>
         <button class="btn btn-primary project-toggler" type="button" data-switch-set="grant-project-set" data-target="#four">4</button>
+        <button class="btn btn-primary project-toggler" type="button" data-switch-set="grant-project-set" data-target="#five">5</button>
       </div>
 </div>
 
@@ -64,7 +64,7 @@ published: true
     </div>
 
     <div title="two" alt="two" id="two" class="project-toggle" style="display:none;">
-        <img class="project-art art" src="/img/portfolio_images/trump.png" />
+        <img class="project-art art" src="/img/portfolio_images/trumpsupporters.jpg" />
         <p>Illustration for Reveal's 'Pumped on Trump' episode, which examined Donald Trump's supporters in the 2016 presidential race.</p>
     </div>
 
@@ -78,6 +78,10 @@ published: true
         <p>These badges were designed to mark and reward student achievements in the PBS NewsHour Student Reporting Labs(SRL) program. SRL offers a comprehensive curriculum to introduce middle and high school students to video journalism, and is being used in more than 60 schools around the country.</p>
     </div>
 
+    <div title="five" alt="five" id="five" class="project-toggle" style="display:none;">
+        <img class="project-art art" src="/img/portfolio_images/trial_by_fire.png" />
+        <p>Illustration for Reveal's ["Trial by Fire"](https://www.revealnews.org/episodes/trial-by-fire/) episode.</p>
+    </div>
 </div>
 
 ---
