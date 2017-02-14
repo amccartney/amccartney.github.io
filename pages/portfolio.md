@@ -80,7 +80,7 @@ permalink: /portfolio/
 
     <div title="five" alt="five" id="five" class="project-toggle" style="display:none;">
         <img class="project-art art" src="/img/portfolio_images/trial_by_fire.png" />
-        <p>Illustration for Reveal's ["Trial by Fire"](https://www.revealnews.org/episodes/trial-by-fire/) episode.</p>
+        <p>Illustration for Reveal's <a href="https://www.revealnews.org/episodes/trial-by-fire/">"Trial by Fire"</a> episode.</p>
     </div>
 </div>
 
