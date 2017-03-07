@@ -56,7 +56,7 @@ ___
 
 ## Teaching
 
-### J216: New Media Master’s Project Seminar 
+### J216: New Media Master’s Project Seminar
 
 [(Advanced Multimedia)](https://journalism.berkeley.edu/curriculum/newmedia/)
 
@@ -75,7 +75,10 @@ ___
 ## Skills
 
 #### Applications:
-Adobe Illustrator/Photoshop, TileMill/Mapbox.js, QGIS, Final Cut Pro, Wordpress.
+Adobe Illustrator/Photoshop, QGIS, Final Cut Pro, Affinity, Wordpress.
 
 #### Programming languages:
-HTML/CSS, Javascript (including D3.js), Python, Bash, SQL.
+HTML/CSS, JS, Python, Bash, SQL/postgres, R, MapboxGL.
+
+#### Web frameworks:
+Django, Flask, Jekyll, Node.
