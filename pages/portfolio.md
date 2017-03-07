@@ -68,27 +68,26 @@ permalink: /portfolio/
 <div class="graphics-slider">
     <div title="one" alt="one" id="one" class="project-toggle">
         <img class="project-art art" src="/img/portfolio_images/food_illo.png" />
-        <p>Illustration for Reveal's 'Farm to Fork' episode, which exposed the pathways that our food take on the way to the supermarket.</p>
+        <p>Illustration for Reveal's <a href="https://www.revealnews.org/episodes/farm-to-fork-uncovering-hazards-in-our-food-systems/"> "Farm to Fork"</a> episode, which exposed the pathways that our food take on the way to the supermarket.</p>
     </div>
 
     <div title="two" alt="two" id="two" class="project-toggle" style="display:none;">
-        <img class="project-art art" src="/img/portfolio_images/trump.png" />
-        <p>Illustration for Reveal's 'Pumped on Trump' episode, which examined Donald Trump's supporters in the 2016 presidential race.</p>
+        <img class="project-art art" src="/img/portfolio_images/trial_by_fire.png" />
+        <p>Illustration for Reveal's <a href="https://www.revealnews.org/episodes/trial-by-fire/">"Trial by Fire"</a> episode.</p>
     </div>
 
     <div title="three" alt="three" id="three" class="project-toggle" style="display:none;">
         <img class="project-art art" src="/img/portfolio_images/child_abuse.png" />
-        <p>Illustrations to accompany a Reveal investigation into abuses at religious daycares, which in many states do not face the same regulations as other daycares. The illustrations show the different punishments religious daycares were found to use on their small children.</p>
+        <p>Illustrations to accompany a Reveal <a href="https://www.revealnews.org/blog/from-hot-hands-to-banana-pinches-church-day-cares-are-hurting-kids-and-getting-away-with-it">investigation</a> into abuses at religious daycares, which in many states do not face the same regulations as other daycares. The illustrations show the different punishments religious daycares were found to use on their small children.</p>
     </div>
 
     <div title="four" alt="four" id="four" class="project-toggle" style="display:none;">
         <img class="project-art art" src="/img/portfolio_images/badges.png" />
         <p>These badges were designed to mark and reward student achievements in the PBS NewsHour Student Reporting Labs(SRL) program. SRL offers a comprehensive curriculum to introduce middle and high school students to video journalism, and is being used in more than 60 schools around the country.</p>
     </div>
-
     <div title="five" alt="five" id="five" class="project-toggle" style="display:none;">
-        <img class="project-art art" src="/img/portfolio_images/trial_by_fire.png" />
-        <p>Illustration for Reveal's <a href="https://www.revealnews.org/episodes/trial-by-fire/">"Trial by Fire"</a> episode.</p>
+        <img class="project-art art" src="/img/portfolio_images/school_pollution.png" />
+        <p>Illustration for Reveal's <a href="https://www.revealnews.org/episodes/school-haze/">"School Haze"</a> episode</p>
     </div>
 </div>
 
@@ -114,8 +113,8 @@ permalink: /portfolio/
     </div>
 
     <div title="two" alt="two" id="two-art" class="art-toggle" style="display:none;">
-        <img class="project-art art" src="/img/portfolio_images/Engine1.jpg" />
-        <p><em>Layered collograph depicting an engine.</em></p>
+        <img class="project-art art" src="/img/portfolio_images/pastel_after_currin.jpg" />
+        <p><em>Portrait, and Currin portrait copy. Blue and orange pastels on blue paper.</em></p>
     </div>
 
     <div title="three" alt="three" id="three-art" class="art-toggle" style="display:none;">
@@ -124,8 +123,8 @@ permalink: /portfolio/
     </div>
 
     <div title="four" alt="four" id="four-art" class="art-toggle" style="display:none;">
-        <img class="project-art art" src="/img/portfolio_images/double_portrait.jpg" />
-        <p><em>Portrait, and portrait copy. Blue and orange pastels on blue paper.</em></p>
+        <img class="project-art art" src="/img/portfolio_images/Engine1.jpg" />
+        <p><em>Layered collograph depicting an engine.</em></p>
     </div>
 
 </div>

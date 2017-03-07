@@ -8,8 +8,6 @@
 
       {% include header.html %}
 
-      <a href="#sticky-footer-wrapper"><div id="to-top">Return to top <i class="fa fa-level-up"></i></div></a>
-
       <div class="page-content">
           <div class="wrapper">
 
@@ -38,11 +36,6 @@
     jQuery(document).ready(function($) {
 
       // Activates "scroll to top" button once viewer scrolls down the page
-      $(window).scroll(function() {
-        var scroll = $(window).scrollTop();
-        if (scroll >= 300) { $('#to-top').addClass('down'); }
-        else { $('#to-top').removeClass('down'); }
-      });
 
       $('.project-toggler').click(function(){
         $('.project-toggler').removeClass('active');

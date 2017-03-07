@@ -40,7 +40,7 @@ Create web applications for the CIR Data Team and illustrate stories for Reveal,
 
 *Arlington, VA – April 2013 - July 2014*
 
-Oversee daily operations and maintenance of PBS NewsHour's online educational resources website, PBS NewsHour Extra. Manage partnerships with other publications, schools and non-profit organizations. Write, edit and produce articles and videos. Design graphics for web use. Coordinate five to ten writers among the NewsHour's desk assistants. Oversee Extra's intern program.
+Oversee daily operations and maintenance of PBS NewsHour's online educational resources website, PBS NewsHour Extra. Manage partnerships with other publications, schools and non-profit organizations. Write, edit and produce articles and videos. Design graphics for web use. Coordinate five to ten writers among the NewsHour's desk assistants. Oversee Extra's intern program. [Author archive](http://www.pbs.org/newshour/extra/author/amccartney/).
 
 
 

@@ -6,9 +6,14 @@
     border-top: 5px solid $brand-color;
     min-height: 56px;
     background-color: $background-color;
+    position: fixed;
+    width: 100%;
+    border-bottom: 1px solid gainsboro;
+    background-color: whitesmoke;
+    z-index: 99;
 
     // Positioning context for the mobile navigation icon
-    position: relative;
+    // position: relative;
 }
 
 .site-title {
@@ -260,7 +265,7 @@
  * Page content
  */
 .page-content {
-    padding: $spacing-unit 0;
+    padding: $spacing-unit * 4 0;
 }
 
 .page-heading {
