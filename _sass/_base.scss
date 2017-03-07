@@ -62,7 +62,7 @@ body#index {
 h1, h2, h3, h4, h5, h6, blockquote, pre,
 ul, ol, dl, figure,
 %vertical-rhythm {
-    margin-bottom: $spacing-unit / 2;
+    margin-bottom: $spacing-unit;
 }
 
 p {
@@ -272,6 +272,7 @@ th {
 	padding-bottom: 56.25%; /* 16:9 */
 	padding-top: 25px;
 	height: 0;
+  margin: 20px 0;
 }
 .videoWrapper iframe {
 	position: absolute;
