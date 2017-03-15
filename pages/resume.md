@@ -3,6 +3,7 @@ layout: page
 title: Resume
 permalink: /resume/
 published: true
+meta: Resume - Allison McCartney
 ---
 
 **[PDF version](/img/resume.pdf)**

@@ -2,6 +2,7 @@
 layout: page
 title: Portfolio
 permalink: /portfolio/
+meta: Portfolio - Allison McCartney
 ---
 
 <ul class="nav nav-pills">

@@ -2,6 +2,7 @@
 layout: page
 title: About
 permalink: /
+meta: About - Allison McCartney
 ---
 
 Hi, I'm Allison. I'm a visual journalist, designer, coder and semi-lapsed printmaker. I design the web, make apps, draw illustrations and write articles.  
