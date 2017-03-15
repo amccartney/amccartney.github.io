@@ -62,8 +62,8 @@ permalink: /portfolio/
     <a data-fancybox="gallery" href="/img/portfolio_images/trump.png" data-caption="Illustration for Reveal's 'Pumped on Trump' episode.">
         <img src="/img/portfolio_images/thumbnails/trump.png"></a>
     <a data-fancybox="gallery" href="/img/portfolio_images/money_doctors.png" data-caption="Illustration for Reveal's 'Billion-dollar scam' episode.">
-        <img src="/img/portfolio_images/thumbnails/money_doctors.png"></a>
-    <a data-fancybox="gallery" href="/img/portfolio_images/food_illo.png" alt="Illustration for Reveal's 'Farm to fork' episode, which exposed the pathways that our food take on the way to the supermarket.">
+        <img src="/img/portfolio_images/thumbnails/money_doctors.png" data-caption="Illustration for Reveal's 'Farm to fork' episode, which exposed the pathways that our food take on the way to the supermarket."></a>
+    <a data-fancybox="gallery" href="/img/portfolio_images/food_illo.png" >
         <img src="/img/portfolio_images/thumbnails/food_illo.png"></a>
     <a data-fancybox="gallery" href="/img/portfolio_images/school_pollution.png" data-caption="Illustration for Reveal's 'School haze' episode.">
         <img src="/img/portfolio_images/thumbnails/school_pollution.png"></a>
