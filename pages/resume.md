@@ -5,6 +5,8 @@ permalink: /resume/
 published: true
 ---
 
+**[PDF version](/img/resume.pdf)**
+
 ### Associate Program Developer
 
 [The Brown Institute for Media Innovation](http://brown.stanford.edu)
