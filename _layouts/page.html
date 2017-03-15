@@ -30,33 +30,15 @@
     </div>
       {% include footer.html %}
 
-  <script src="{{ site.url }}/js/jquery.min.js"></script>
-  <script src="{{ '/js/slippry.min.js' | prepend: site.baseurl }}"></script>
+  <script src="{{ '/js/jquery.min.js' | prepend: site.baseurl }}"></script>
+  <script src="{{ '/js/jquery.fancybox.min.js' | prepend: site.baseurl }}"></script>
   <script>
     jQuery(document).ready(function($) {
-
-      // Activates "scroll to top" button once viewer scrolls down the page
-
-      $('.project-toggler').click(function(){
-        $('.project-toggler').removeClass('active');
-        $(this).addClass('active');
-        var target = $(this).attr('data-target')
-        $('.project-toggle').hide();
-        $(target).show();
-      });
-
-      $('.art-toggler').click(function(){
-        $('.art-toggler').removeClass('active');
-        $(this).addClass('active');
-        var target = $(this).attr('data-target')
-        $('.art-toggle').hide();
-        $(target).show();
-      });
 
       var page_title = '{{ page.title }}'
         , id_name = page_title + '-nav';
 
-      $('#' + id_name).addClass('active');
+        $('#' + id_name).addClass('active');
     });
   </script>
 
