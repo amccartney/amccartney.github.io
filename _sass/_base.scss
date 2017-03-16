@@ -160,8 +160,10 @@ a {
     color: $text-color;
     border-bottom: 3px solid $brand-color;
     text-decoration: none;
+    transition: color .1s ease;
     &:hover {
         text-decoration: none;
+        color: lightseagreen;
     }
 }
 
