@@ -77,14 +77,10 @@ ___
 
 ## Skills
 
-#### Applications:
-Adobe Illustrator/Photoshop, QGIS, Final Cut Pro, Affinity Photo, Wordpress.
+**Applications:** Adobe Illustrator/Photoshop, Final Cut Pro, Affinity Photo, Wordpress.
 
-#### Programming languages:
-JS, Python, Bash, SQL/Postgres, R.
+**Programming languages:** JS, Python, Bash, SQL/Postgres, R.
 
-#### Mapping:
-Leaflet, MapboxGL, Tangram (Mapzen), Google Maps API. 
+**Mapping:** Leaflet, MapboxGL, QGIS, Tangram (Mapzen), Google Maps API. 
 
-#### Web frameworks:
-Django, Flask, Jekyll, Node.
+**Web frameworks:** Django, Flask, Jekyll, Node.
