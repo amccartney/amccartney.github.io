@@ -81,7 +81,10 @@ ___
 Adobe Illustrator/Photoshop, QGIS, Final Cut Pro, Affinity Photo, Wordpress.
 
 #### Programming languages:
-JS, Python, Bash, SQL/Postgres, R, MapboxGL.
+JS, Python, Bash, SQL/Postgres, R.
+
+#### Mapping:
+Leaflet, MapboxGL, Tangram (Mapzen), Google Maps API. 
 
 #### Web frameworks:
 Django, Flask, Jekyll, Node.
