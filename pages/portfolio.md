@@ -23,7 +23,7 @@ meta: Portfolio - Allison McCartney
 
 [Go to project](http://apps.revealnews.org/border-wall)
 
-*I designed and developed the application for The Wall using Mapbox GL and Node to Generate the map and graphics. This map built on the data collected by the Reveal data team, which is the first open-sourced data set of the current infrastructure separating the US and Mexico. It was used to accompany Reveal's look into the costs and repercussions of Donald Trump's proposed border wall.*
+I designed and developed the application for The Wall using Mapbox GL and Node to generate the map and graphics. This map built on the data collected by the Reveal data team, which is the first open-sourced data set of the current infrastructure separating the US and Mexico. It was used to accompany Reveal's look into the costs and repercussions of Donald Trump's proposed border wall.
 
 
 ### Open Contractors
@@ -33,7 +33,7 @@ meta: Portfolio - Allison McCartney
 	<iframe width="560" height="315" src="https://www.youtube.com/embed/rMZuEOK4DtY" frameborder="0" allowfullscreen></iframe>
 </div>
 
-*Currently in production, launching in June 2017. Open Contractors is a web application for exploring and making sense of Department of Defense contracting data. I designed and built the Django application and interface for interacting with the data. Open Contractors is a grant project funded by the Brown Institute for Media Innovation.*
+Currently in production, launching in June 2017. Open Contractors is a web application for exploring and making sense of Department of Defense contracting data. I designed and built the Django application and interface for interacting with the data. Open Contractors is a grant project funded by the Brown Institute for Media Innovation.
 
 ### The Lost & The Found
 
@@ -41,9 +41,9 @@ meta: Portfolio - Allison McCartney
 
 [Go to project](http://lostandfound.revealnews.org)
 
-*My first major news application project for the Center for Investigative Reporting. This application accompanied our investigation [Left for Dead](http://revealnews.org/leftfordead) which looked into the broken law enforcement systems that prevent unidentified bodies from being identified, and missing persons from being found.*
+My first major news application project for the Center for Investigative Reporting. This application accompanied our investigation [Left for Dead](http://revealnews.org/leftfordead) which looked into the broken law enforcement systems that prevent unidentified bodies from being identified, and missing persons from being found.
 
-*The application took data from the NamUs databases of missing and unidentified persons and allows users to search through both databases simultaneously, hopefully making in easier for the public to assist law enforcement in making breakthroughs on cold cases. I was responsible for the design and interaction of the site.*
+The application took data from the NamUs databases of missing and unidentified persons and allows users to search through both databases simultaneously, hopefully making in easier for the public to assist law enforcement in making breakthroughs on cold cases. I was responsible for the design and interaction of the site.
 
 #### Awards
 -   2016 News and Documentary Emmy Award Winner: Multimedia News Package

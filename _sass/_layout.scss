@@ -18,12 +18,12 @@
 
 .site-title {
     font-size: 30px;
-    font-weight: 300;
-    line-height: 56px;
-    letter-spacing: 1px;
-    margin-bottom: 0;
-    float: left;
-    color: $text-color;
+    // font-weight: 300;
+    // line-height: 56px;
+    // letter-spacing: 1px;
+    // margin-bottom: 0;
+    // float: left;
+    // color: $text-color;
     font-family: $name-font-family;
     border-bottom: none;
 }
@@ -70,96 +70,33 @@
   }
 }
 
-.site-nav {
-    float: right;
-    line-height: 56px;
-    background-color: whitesmoke;
-    z-index: 99;
-
-    .menu-icon {
-        display: none;
-    }
-
-    .page-link {
-        color: $text-color;
-        line-height: $base-line-height;
-
-        // Gaps between nav items, but not on the last one
-        &:not(:last-child) {
-            margin-right: 10px;
-        }
-    }
-
-    .trigger a {
-        border: none;
-        padding: auto;
-        border-radius: 0;
-        &:hover,
-        &.active {
-            background-color: $background-color;
-            border-bottom: 3px solid $brand-color;
-        }
-    }
-    .trigger { margin: 0; }
-
-    @include media-query($on-palm) {
-        position: absolute;
-        top: 9px;
-        right: $spacing-unit / 2;
-        background-color: $background-color;
-        border: 1px solid $grey-color-light;
-        border-radius: 5px;
-        text-align: right;
-
-        .menu-icon {
-            display: block;
-            float: right;
-            width: 36px;
-            height: auto;
-            line-height: 0;
-            padding-top: 10px;
-            text-align: center;
-            padding: 10px 0;
-            border: none;
-
-            > svg {
-                width: 18px;
-                height: 15px;
-
-                path {
-                    fill: $grey-color-dark;
-                }
-            }
-        }
-
-        .trigger {
-            clear: both;
-            display: none;
-        }
-
-        &:hover .trigger {
-            display: block;
-            padding-bottom: 5px;
-        }
-
-        .page-link {
-            display: block;
-            padding: 5px 10px;
-
-            &:not(:last-child) {
-                margin-right: 0;
-            }
-            margin-left: 20px;
-        }
-    }
+.navbar-default {
+    background-color: $background-color;
 }
+
+.navbar-default .navbar-toggle {
+    float: left;
+}
+.navbar-toggle .icon-bar {
+    width: 16px;
+}
+
+.navbar-default .navbar-nav li a {
+    border-bottom: none;
+}
+
+.navbar-default .navbar-nav li a.active {
+    border-bottom: 3px solid $brand-color;
+}
+
+
 
 /**
  * Site footer
  */
 .site-footer {
     border-top: 1px solid $grey-color-light;
-    padding: $spacing-unit 0;
+    padding: $spacing-unit;
     background-color: $background-color;
     height: 129px;
     a { border-bottom: none; }
