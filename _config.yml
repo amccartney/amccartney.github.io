@@ -23,5 +23,7 @@ facebook_username:
 
 google_analytics:   UA-73659012-1
 
+port: 4001
+
 # Build settings
 markdown: kramdown
