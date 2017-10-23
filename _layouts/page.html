@@ -4,47 +4,143 @@
   {% include head.html %}
 
   <body>
-    <div id="sticky-footer-wrapper">
 
-      {% include header.html %}
+    <div class="mobile">
+        <div class="container">
+            <section class="row">
+                <div class="twelve columns">
+                    <ul class="social">
+                        <li><a href="https://twitter.com/{{ site.twitter_username }}" class="social-btn social-btn--twitter"></a></li>
+                        <li><a href="https://github.com/{{ site.github_username }}" class="social-btn social-btn--github"></a></li>
+                        <li><a href="https://linkedin.com/in/{{ site.linkedin_username }}" class="social-btn social-btn--linked-in"></a></li>
+                    </ul>
+                </div>
+                
+            </section>
+        </div>
+    </div>
 
-      <div class="page-content">
-          <div class="container">
+    <div class="page-head">
+        <div class="container">
             <section class="row">
 
-              <article class="post col-md-8 col-md-offset-2">
-
-                <header class="post-header">
-                  <h1 class="post-title">{{ page.title }}</h1>
-                </header>
-
-                <div class="post-content">
-                  {{ content }}
+                <!-- sidebar -->
+                <div class="eight columns">
+                    
+                    <a id="profile-link" href="/" class="no-underline block float-left"><object  id="profile" type="image/svg+xml" data="/img/profile.svg" class="inner"></object>
+                        <h6 class="float-left" itemprop="name headline">Allison M<span class="superscript">c</span>Cartney</h6>
+                    </a>
                 </div>
 
-              </article>
+                <!-- page title -->
+                <div class="four columns desktop">
+
+                   <ul class="social">
+                        <li><a href="https://twitter.com/{{ site.twitter_username }}" class="social-btn social-btn--twitter"></a></li>
+                        <li><a href="https://github.com/{{ site.github_username }}" class="social-btn social-btn--github"></a></li>
+                        <li><a href="https://linkedin.com/in/{{ site.linkedin_username }}" class="social-btn social-btn--linked-in"></a></li>
+                    </ul>
+                </div>
+
             </section>
-          </div>
-      </div>
-
-      <div class="push"></div>
+        </div>
     </div>
-      {% include footer.html %}
 
-  <script src="{{ '/js/jquery.min.js' | prepend: site.baseurl }}"></script>
-  <script src="{{ '/js/jquery.fancybox.min.js' | prepend: site.baseurl }}"></script>
-  <script src="{{ '/js/bootstrap.min.js' | prepend: site.baseurl }}"></script>
+    <div class="container">
 
-  <script>
-    jQuery(document).ready(function($) {
+        <section class="row">
 
-      var page_title = '{{ page.title }}'
-        , id_name = page_title + '-nav';
+            <div class="nine columns offset-by-one">
+                <h2 itemprop="name headline">{{ page.title }}</h2>
+            </div>
+        </section>
 
-        $('#' + id_name).addClass('active');
 
-    });
-  </script>
+        {% if page.image or page.video-id %}
+        <section class="row">
+            
+            <!-- main content col -->
+            <div class="twelve columns" itemscope itemtype="http://schema.org/BlogPosting">
+
+                {% if page.image %}
+                <img class="featured-img" src="{{ page.image }}" />
+                {% elsif page.video-id %}
+                <div class="videoWrapper">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ page.video-id }}" frameborder="0" allowfullscreen></iframe>
+                </div>
+                {% endif %}
+
+            </div>
+
+        </section>
+        {% endif %}
+
+        <section class="row">
+            <div class="post-content nine columns offset-by-one" itemprop="articleBody">
+              
+                {{ content }}
+          
+            </div>
+        </section>
+
+        {% include footer.html %}
+        
+    </div>
+
+    <script src="{{ '/js/jquery.min.js' | prepend: site.baseurl }}"></script>
+    <script src="{{ '/js/jquery.fancybox.min.js' | prepend: site.baseurl }}"></script>
+    <script src="{{ '/js/randomColor.min.js' | prepend: site.baseurl }}"></script>
+
+    <script type="text/javascript">
+
+        document.addEventListener("DOMContentLoaded", function(){
+            document.body.className = "loaded";
+        });
+
+        var link = document.getElementById("profile-link");
+        var pic = document.getElementById("profile");
+        var colorInterval;
+        
+
+        pic.addEventListener("load", function() {
+
+            var doc = pic.getSVGDocument();
+            var rect = doc.querySelector("rect"); // suppose our image contains a <rect>
+            var darkAccent = doc.getElementById("dark-accent").querySelectorAll("path");
+            var lightAccent = doc.getElementById("light-accent").querySelectorAll("path");
+            
+
+            rect.setAttribute("fill", "#ffeef1");
+
+            for (var i = 0; i < darkAccent.length; ++i) { 
+                darkAccent[i].style.fill = "purple"; 
+            }
+
+            for (var i = 0; i < lightAccent.length; ++i) { 
+                lightAccent[i].style.fill = "mediumpurple"; 
+            }
+
+
+            clearInterval(colorInterval);
+            colorInterval = setInterval(function () {
+                var color1 = randomColor({ luminosity: 'dark' });
+                var color2 = randomColor({ luminosity: 'light' });
+
+                for (var i = 0; i < darkAccent.length; ++i) { 
+                    darkAccent[i].style.fill = color1; 
+                    darkAccent[i].style.transition = "all 4000ms";
+                }
+                for (var i = 0; i < lightAccent.length; ++i) { 
+                    lightAccent[i].style.fill = color2; 
+                    lightAccent[i].style.transition = "all 4000ms";
+                }
+            }, 4000);
+
+        });
+
+        $("[data-fancybox]").fancybox();
+        
+    </script>
 
   </body>
 

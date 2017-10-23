@@ -1,37 +1,78 @@
 <!DOCTYPE html>
 <html>
 
-  {% include head.html %}
+    {% include head.html %}
 
-  <body>
-    <div id="sticky-footer-wrapper">
+    <body>
+        
+        <div class="container">
 
-      {% include header.html %}
+            <section class="row page-head">
 
-      <div class="page-content">
-          <div class="wrapper">
+                <div class="two columns">
+                    <object  id="profile" type="image/svg+xml" data="/img/profile.svg" class="inner"></object>
 
-            <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+                    <ul class="social">
+                        <li><a href="#" class="social-btn social-btn--twitter"></a></li>
+                        <li><a href="#" class="social-btn social-btn--github"></a></li>
+                        <li><a href="#" class="social-btn social-btn--linked-in"></a></li>
+                    </ul>
 
-              <header class="post-header">
-                <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
-                <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time>{% if page.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>{% endif %}</p>
-              </header>
+                </div>
+                
+                
+                <div class="nine columns">
+                    <h5 itemprop="name headline">{{ page.title }}</h4>
+                </div>
 
-              <div class="post-content" itemprop="articleBody">
-                {{ content }}
-              </div>
+                <article class="post nine columns" itemscope itemtype="http://schema.org/BlogPosting">
 
-            </article>
+                    <div class="post-content" itemprop="articleBody">
+                  
+                        {{ content }}
+                  
+                    </div>
 
-        </div>
-      </div>
+                    <img src="{{ page.image }}" />
 
-      <div class="push"></div>
-    </div>  
-      {% include footer.html %}
-    
+                </article>
+                    
+                
+            </section>
+
+
+            <div class="push"></div>
+
+        </div>  
+          
+        {% include footer.html %}
+
+        <script src="{{ '/js/jquery.min.js' | prepend: site.baseurl }}"></script>
+        <script src="{{ '/js/jquery.fancybox.min.js' | prepend: site.baseurl }}"></script>
+        <script src="{{ '/js/bootstrap.min.js' | prepend: site.baseurl }}"></script>
+
+        <script type="text/javascript">
+
+            document.getElementById("profile").addEventListener("load", function() {
+                var doc = this.getSVGDocument();
+                var rect = doc.querySelector("rect"); // suppose our image contains a <rect>
+                var darkAccent = doc.getElementById("dark-accent").querySelectorAll("path");
+                var lightAccent = doc.getElementById("light-accent").querySelectorAll("path");
+
+                rect.setAttribute("fill", "#ffeef1");
+
+                for (var i = 0; i < darkAccent.length; ++i) {
+                    darkAccent[i].style.fill = "purple";
+                }
+
+                for (var i = 0; i < lightAccent.length; ++i) {
+                    lightAccent[i].style.fill = "mediumpurple";
+                }
+
+            });
+            
+        </script>
   
-  </body>
+    </body>
 
 </html>

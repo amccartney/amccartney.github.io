@@ -17,19 +17,33 @@ meta: Portfolio - Allison McCartney
 
 ## Web / Interactive
 
+
+### Represent
+
+![Represent: See Bills Related to Health](/img/portfolio_images/represent.png)
+
+Responsible for redesigning and implementing the frontend of Represent, ProPublica's Congress-tracking app. Oversaw the change from Represent's previous structure to a new ProPublica grid system, replacing nine years worth of styles. Currently redesigning the homepage and inner pages one-by-one while implementing new pages to add insight to user's understading of Congress and their representatives.
+
+
+### The Stanford Open Policing Project
+
+![Stanford Open Policing Project Homepage](/img/portfolio_images/open_policing.png)
+
+Designed and developed the site and homepage graphics for the Stanford's massive study into racial bias in police traffic stop data. 
+
+
 ### The Wall: Explore the US-Mexico border fence
 
 ![The Wall: Explore the US-Mexico border fence](/img/portfolio_images/borderwall.png)
 
 [Go to project](http://apps.revealnews.org/border-wall)
 
-I designed and developed the application for The Wall using Mapbox GL and Node to generate the map and graphics. This map built on the data collected by the Reveal data team, which is the first open-sourced data set of the current infrastructure separating the US and Mexico. It was used to accompany Reveal's look into the costs and repercussions of Donald Trump's proposed border wall.
+Designed and developed the application for The Wall using Mapbox GL and Node to generate the map and graphics. This map built on the data collected by the Reveal data team, which is the first open-sourced data set of the current infrastructure separating the US and Mexico. It was used to accompany Reveal's look into the costs and repercussions of Donald Trump's proposed border wall.
 
 
 ### Open Contractors
 
 <div class="videoWrapper">
-
 	<iframe width="560" height="315" src="https://www.youtube.com/embed/rMZuEOK4DtY" frameborder="0" allowfullscreen></iframe>
 </div>
 

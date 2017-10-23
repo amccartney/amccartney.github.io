@@ -1,0 +1,9 @@
+---
+layout:     page
+title:      "Mathbot"
+image:      /img/portfolio_images/mathbot.png
+thumbnail:  /img/thumbnails/mathbot.png
+categories: website
+---
+
+Designed and developed the front end of the Mathbot website, an upcoming project of the Stanford Social Algorithms Laboratory.

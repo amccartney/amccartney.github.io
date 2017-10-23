@@ -4,20 +4,20 @@
 @charset "utf-8";
 
 // Our variables
-$base-font-family: 'Open Sans', sans-serif;
-$name-font-family: 'Wire One', sans-serif;
-$body-font-family: 'Gentium Book Basic', serif;
+$base-font-family: 'Roboto', sans-serif;
 $base-font-size:   16px;
 $base-font-weight: 300;
+$medium-font-weight: 600;
+$bold-font-weight: 900;
 $small-font-size:  $base-font-size * 0.875;
 $base-line-height: 1.5;
 
-$spacing-unit:     20px;
+$spacing-unit:     2rem;
 
-$text-color:       #332E2C;
-$background-color: WhiteSmoke;
-$brand-color:      Aquamarine;
-$title-color:      WhiteSmoke;
+$text-color:       #48525B;
+$background-color: #FFFFFF;
+$brand-color:      #F76D61;
+$title-color:      #F8F8FF;
 
 $grey-color:       #828282;
 $grey-color-light: lighten($grey-color, 25%);

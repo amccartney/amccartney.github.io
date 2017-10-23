@@ -16,84 +16,15 @@
     // position: relative;
 }
 
-.site-title {
-    font-size: 30px;
-    // font-weight: 300;
-    // line-height: 56px;
-    // letter-spacing: 1px;
-    // margin-bottom: 0;
-    // float: left;
-    // color: $text-color;
-    font-family: $name-font-family;
-    border-bottom: none;
-}
-
-.trigger { margin: 40px 10px 25px 10px; }
-.trigger a {
-    border: 1px solid $text-color;
-    padding: 15px;
-    color: $text-color;
-    border-radius: 5px;
-    &:hover {
-        background-color: $brand-color;
-        color: $text-color;
-        text-decoration: none;
-        &:visited {
-            background-color: lighten($background-color, 10%);
-        }
-    }
-}
-
-.home p {
-    color: $text-color;
-    font-style: italic;
-}
-
-.home {
-    text-align: center;
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.nav-pills {
-  li {
-    a { border-radius: 0; }
-    &.active a,
-    &.active a:focus,
-    &.active a:hover {
-      background-color: rgba(0,0,0,.05);
-      color: $text-color;
-      border-bottom: 3px solid rgba(0,0,0,.05);
-    }
-  }
-}
-
-.navbar-default {
-    background-color: $background-color;
-}
-
-.navbar-default .navbar-toggle {
-    float: left;
-}
-.navbar-toggle .icon-bar {
-    width: 16px;
-}
-
-.navbar-default .navbar-nav li a {
-    border-bottom: none;
-}
-
-.navbar-default .navbar-nav li a.active {
-    border-bottom: 3px solid $brand-color;
-}
-
-
 
 /**
  * Site footer
  */
+
+footer { margin: ( $spacing-unit * 2 ) 0; }
+
+.contact-list { list-style: none; }
+
 .site-footer {
     border-top: 1px solid $grey-color-light;
     padding: $spacing-unit;
@@ -106,108 +37,11 @@
     height: 170px; /* .push must be the same height as footer */
 }
 
-.footer-heading {
-    font-size: 18px;
-    margin-bottom: $spacing-unit / 2;
-}
-
-.site-footer .fa {
-    margin-right: $spacing-unit / 2;
-}
-
-.contact-list,
-.social-media-list {
-    list-style: none;
-    margin-left: 0;
-}
-
-.footer-col-wrapper {
-    font-size: 15px;
-    color: $grey-color;
-    margin-left: -$spacing-unit / 2;
-    @extend %clearfix;
-}
-
-.footer-col {
-    float: left;
-    margin-bottom: $spacing-unit / 2;
-    padding-left: $spacing-unit / 2;
-}
-
-.footer-col-1 {
-    width: -webkit-calc(35% - (#{$spacing-unit} / 2));
-    width:         calc(35% - (#{$spacing-unit} / 2));
-}
-
-.footer-col-2 {
-    width: -webkit-calc(30% - (#{$spacing-unit} / 2));
-    width:         calc(30% - (#{$spacing-unit} / 2));
-}
-
-.footer-col-3 {
-    width: -webkit-calc(45% - (#{$spacing-unit} / 2));
-    width:         calc(45% - (#{$spacing-unit} / 2));
-}
-
-@include media-query($on-laptop) {
-    .footer-col-1,
-    .footer-col-2 {
-        width: -webkit-calc(50% - (#{$spacing-unit} / 2));
-        width:         calc(50% - (#{$spacing-unit} / 2));
-    }
-
-    .footer-col-3 {
-        width: -webkit-calc(100% - (#{$spacing-unit} / 2));
-        width:         calc(100% - (#{$spacing-unit} / 2));
-    }
-}
-
-@include media-query($on-palm) {
-    .footer-col {
-        float: none;
-        width: -webkit-calc(100% - (#{$spacing-unit} / 2));
-        width:         calc(100% - (#{$spacing-unit} / 2));
-    }
-}
-
-.nav-pills { margin-left: 0; }
-.btn-group {
-  padding: 15px;
-  button.btn {
-    background-color: transparent;
-    color: $text-color;
-    border: none;
-    border-bottom: 3px solid aquamarine;
-    &+.btn { margin-left: 0; }
-    &:first-child:not(:last-child):not(.dropdown-toggle),
-    &:last-child:not(:first-child) {
-      border-radius: 0;
-    }
-    &.active,
-    &:active,
-    &:focus {
-      background-color: rgba(0,0,0,.05);
-      border: none;
-      color: $text-color;
-      border-bottom: 3px solid rgba(0,0,0,.05);
-      box-shadow: none;
-      outline: none;
-    }
-    &:hover { background-color: rgba(0,0,0,.05) }
-  }
-}
-.graphics-slider p, .art-slider p { margin-top: 20px; }
 
 /**
  * Page content
  */
-.page-content {
-    padding: $spacing-unit * 4 0;
-}
-
-.page-heading {
-    font-size: 20px;
-}
+ 
 
 .post-list {
     margin-left: 0;
@@ -215,6 +49,7 @@
 
     > li {
         padding: $spacing-unit 0;
+        
         &:not(:last-child) {
             border-bottom: 3px solid lighten($background-color, 10%);
         }
@@ -232,7 +67,6 @@
 }
 
 
-
 /**
  * Posts
  */
@@ -246,37 +80,9 @@
     letter-spacing: -1px;
     line-height: 1;
     color: $grey-color;
-    margin-bottom: 4rem;
-
-    @include media-query($on-laptop) {
-        font-size: 36px;
-    }
+    margin-bottom: $spacing-unit * 2;
 }
 
 .post-content {
     margin-bottom: $spacing-unit;
-
-    h2 {
-        font-size: 32px;
-
-        @include media-query($on-laptop) {
-            font-size: 28px;
-        }
-    }
-
-    h3 {
-        font-size: 26px;
-
-        @include media-query($on-laptop) {
-            font-size: 22px;
-        }
-    }
-
-    h4 {
-        font-size: 20px;
-
-        @include media-query($on-laptop) {
-            font-size: 18px;
-        }
-    }
 }

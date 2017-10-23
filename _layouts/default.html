@@ -3,13 +3,123 @@
 
   {% include head.html %}
 
-  <body id="index">
+  <body>
 
-    <div class="page-content">
-      <div class="wrapper">
-        {{ content }}
-      </div>
+    <div class="mobile">
+        <div class="container">
+            <section class="row">
+                <div class="twelve columns">
+                    <ul class="social">
+                        <li><a href="https://twitter.com/{{ site.twitter_username }}" class="social-btn social-btn--twitter"></a></li>
+                        <li><a href="https://github.com/{{ site.github_username }}" class="social-btn social-btn--github"></a></li>
+                        <li><a href="https://linkedin.com/in/{{ site.linkedin_username }}" class="social-btn social-btn--linked-in"></a></li>
+                    </ul>
+                </div>
+                
+            </section>
+        </div>
     </div>
+
+    <div class="page-head">
+        <div class="container">
+
+            <section class="row">
+
+                <!-- sidebar -->
+                <div class="eight columns">
+                    
+                    <a id="profile-link" href="/" class="no-underline block float-left"><object  id="profile" type="image/svg+xml" data="/img/profile.svg" class="inner"></object>
+                        <h6 class="float-left" itemprop="name headline">Allison M<span class="superscript">c</span>Cartney</h6>
+                    </a>
+                </div>
+
+                <!-- page title -->
+                <div class="four columns desktop">
+
+                   <ul class="social">
+                        <li><a href="https://twitter.com/{{ site.twitter_username }}" class="social-btn social-btn--twitter"></a></li>
+                        <li><a href="https://github.com/{{ site.github_username }}" class="social-btn social-btn--github"></a></li>
+                        <li><a href="https://linkedin.com/in/{{ site.linkedin_username }}" class="social-btn social-btn--linked-in"></a></li>
+                    </ul>
+                </div>
+
+            </section>
+        </div>
+    </div>
+    
+
+    <div class="container">
+
+        <section class="row">
+            
+
+            <div class="post-content twelve columns" itemprop="articleBody">
+          
+                {{ content }}
+          
+            </div>
+
+
+        </section>
+
+        {% include footer.html %}
+        
+    </div>
+
+    <script src="{{ '/js/jquery.min.js' | prepend: site.baseurl }}"></script>
+    <script src="{{ '/js/jquery.fancybox.min.js' | prepend: site.baseurl }}"></script>
+    <script src="{{ '/js/randomColor.min.js' | prepend: site.baseurl }}"></script>
+
+    <script type="text/javascript">
+
+        document.addEventListener("DOMContentLoaded", function(){
+            document.body.className = "loaded";
+        });
+
+        var link = document.getElementById("profile-link");
+        var pic = document.getElementById("profile");
+        var colorInterval;
+        
+
+        pic.addEventListener("load", function() {
+
+            var doc = pic.getSVGDocument();
+            var rect = doc.querySelector("rect"); // suppose our image contains a <rect>
+            var darkAccent = doc.getElementById("dark-accent").querySelectorAll("path");
+            var lightAccent = doc.getElementById("light-accent").querySelectorAll("path");
+            
+
+            rect.setAttribute("fill", "#ffeef1");
+
+            for (var i = 0; i < darkAccent.length; ++i) { 
+                darkAccent[i].style.fill = "purple"; 
+            }
+
+            for (var i = 0; i < lightAccent.length; ++i) { 
+                lightAccent[i].style.fill = "mediumpurple"; 
+            }
+
+
+            clearInterval(colorInterval);
+            colorInterval = setInterval(function () {
+                var color1 = randomColor({ luminosity: 'dark' });
+                var color2 = randomColor({ luminosity: 'light' });
+
+                for (var i = 0; i < darkAccent.length; ++i) { 
+                    darkAccent[i].style.fill = color1; 
+                    darkAccent[i].style.transition = "all 4000ms";
+                }
+                for (var i = 0; i < lightAccent.length; ++i) { 
+                    lightAccent[i].style.fill = color2; 
+                    lightAccent[i].style.transition = "all 4000ms";
+                }
+            }, 4000);
+
+        });
+
+        $("[data-fancybox]").fancybox();
+        
+    </script>
 
   </body>
 

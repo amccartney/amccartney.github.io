@@ -1,0 +1,15 @@
+---
+layout:     page
+title:      "The Wall: Explore the US-Mexico Border Fence"
+image:      /img/portfolio_images/borderwall.png
+thumbnail:  /img/thumbnails/borderwall.png
+categories: news-apps
+---
+
+I designed and developed the application for [The Wall](http://revealnews.org/border-wall) using Mapbox GL and Node to generate the map and graphics. This map built on the data collected by the Reveal data team, which is the first open-sourced data set of the current infrastructure separating the US and Mexico. It was used to accompany Reveal’s look into the costs and repercussions of Donald Trump’s proposed border wall.
+
++   Credits: Michael Corey, lead news applications developer. Andy Becker, reporter.
+
+## Awards
+
++   2017 Online Journalism Awards: Excellence in Audio Digital Storytelling, Large Newsroom

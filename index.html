@@ -1,0 +1,21 @@
+---
+layout: default
+---
+    
+<section class="row">
+
+    <div class="nine columns offset-by-one guff">
+        <p>I write code, design websites, analyze data, draw pictures and write articles.</p>
+        <p>I've worked for ProPublica, The Center for Investigative Reporting, The PBS NewsHour, The Brown Institute for Media Innovation and maybe someday I'll work for you too.</p>
+        <p>If you’d like to know more about me, check out my <a href="/resume/">resume.</a></p>
+    </div>
+    
+</section>
+
+{% for post in site.posts %}
+<section class="row portfolio">
+
+    <div class="twelve columns"><a href="{{ post.url }}"><div class="img-container" data-title="{{ post.title }}"><img src="{{ post.thumbnail }}" /></div></a></div>
+
+</section>
+{% endfor %}
