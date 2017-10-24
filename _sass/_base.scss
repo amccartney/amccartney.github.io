@@ -214,7 +214,6 @@ a.social-btn {
         line-height: 6vw;
         padding: 5%;
         position: absolute;
-        transition: all .25s ease; 
         content: attr(data-title);
         background-color: transparentize($brand-color, .15);
     }
@@ -252,9 +251,8 @@ img {
 .img-link { 
     display: block;
     background: url("/img/pattern.svg") repeat; 
+    margin-bottom: $spacing-unit;
 }
-
-.featured-img { margin-bottom: $spacing-unit; }
 
 /**
  * Iframes
@@ -526,7 +524,7 @@ th {
         margin-bottom: 4em;
     }
 
-    .featured-img,
+    .img-link,
     .videoWrapper { margin-bottom: 0; }
 
     .desktop { display: inline-block; }
@@ -546,7 +544,8 @@ th {
         // &:hover img { transform: translate( 10px, -10px ); }
 
         .img-container:after { 
-            opacity: 0;    
+            opacity: 0;
+            transition: all .25s ease;
             background-color: transparent;
             font-size: 2.2rem;
             font-size: 3vw;
