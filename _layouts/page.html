@@ -5,54 +5,16 @@
 
   <body>
 
-    <div class="mobile">
-        <div class="container">
-            <section class="row">
-                <div class="twelve columns">
-                    <ul class="social">
-                        <li><a href="https://twitter.com/{{ site.twitter_username }}" class="social-btn social-btn--twitter"></a></li>
-                        <li><a href="https://github.com/{{ site.github_username }}" class="social-btn social-btn--github"></a></li>
-                        <li><a href="https://linkedin.com/in/{{ site.linkedin_username }}" class="social-btn social-btn--linked-in"></a></li>
-                    </ul>
-                </div>
-                
-            </section>
-        </div>
-    </div>
-
-    <div class="page-head">
-        <div class="container">
-            <section class="row">
-
-                <!-- sidebar -->
-                <div class="eight columns">
-                    
-                    <a id="profile-link" href="/" class="no-underline block float-left"><object  id="profile" type="image/svg+xml" data="/img/profile.svg" class="inner"></object>
-                        <h6 class="float-left" itemprop="name headline">Allison M<span class="superscript">c</span>Cartney</h6>
-                    </a>
-                </div>
-
-                <!-- page title -->
-                <div class="four columns desktop">
-
-                   <ul class="social">
-                        <li><a href="https://twitter.com/{{ site.twitter_username }}" class="social-btn social-btn--twitter"></a></li>
-                        <li><a href="https://github.com/{{ site.github_username }}" class="social-btn social-btn--github"></a></li>
-                        <li><a href="https://linkedin.com/in/{{ site.linkedin_username }}" class="social-btn social-btn--linked-in"></a></li>
-                    </ul>
-                </div>
-
-            </section>
-        </div>
-    </div>
+    {% include page-header.html %}
 
     <div class="container">
 
         <section class="row">
 
-            <div class="nine columns offset-by-one">
+            <div class="ten columns offset-by-one">
                 <h2 itemprop="name headline">{{ page.title }}</h2>
             </div>
+
         </section>
 
 
@@ -63,7 +25,9 @@
             <div class="twelve columns" itemscope itemtype="http://schema.org/BlogPosting">
 
                 {% if page.image %}
-                <img class="featured-img" src="{{ page.image }}" />
+                <a href="{{ page.proj-url }}" class="img-link">
+                    <img class="featured-img" src="{{ page.image }}" />
+                </a>
                 {% elsif page.video-id %}
                 <div class="videoWrapper">
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ page.video-id }}" frameborder="0" allowfullscreen></iframe>
@@ -76,7 +40,7 @@
         {% endif %}
 
         <section class="row">
-            <div class="post-content nine columns offset-by-one" itemprop="articleBody">
+            <div class="post-content ten columns offset-by-one" itemprop="articleBody">
               
                 {{ content }}
           

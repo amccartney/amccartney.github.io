@@ -3,6 +3,7 @@ layout:     page
 title:      "The Wall: Explore the US-Mexico Border Fence"
 image:      /img/portfolio_images/borderwall.png
 thumbnail:  /img/thumbnails/borderwall.png
+proj-url:   http://apps.revealnews.org/border-wall
 categories: news-apps
 ---
 

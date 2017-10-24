@@ -82,10 +82,6 @@ The application took data from the NamUs databases of missing and unidentified p
         <img src="/img/portfolio_images/thumbnails/food_illo.png"></a>
     <a data-fancybox="gallery" href="/img/portfolio_images/school_pollution.png" data-caption="Illustration for Reveal's 'School haze' episode.">
         <img src="/img/portfolio_images/thumbnails/school_pollution.png"></a>
-</div>
-
-### Functional Graphics
-<div class="ImageGrid">
     <a data-fancybox="gallery" href="/img/portfolio_images/ndvi-combined.png" data-caption="Visual diagram of NDVI for Reveal's explanation on how it found excessive water users in Bel Air.">
         <img src="/img/portfolio_images/thumbnails/ndvi-combined.png"></a>
     <a data-fancybox="gallery" href="/img/portfolio_images/child_abuse.png" data-caption="Visual explanation of some of the abusive actions taken by care providers at religious day cares. Produced for a Reveal investigation.">

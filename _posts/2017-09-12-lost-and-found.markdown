@@ -1,8 +1,9 @@
 ---
-layout: page
-title:  "The Lost and the Found"
-image:  /img/portfolio_images/lostandfound.png
-thumbnail: /img/thumbnails/lostandfound.png
+layout:     page
+title:      "The Lost and the Found"
+image:      /img/portfolio_images/lostandfound.png
+thumbnail:  /img/thumbnails/lostandfound.png
+proj-url:   http://lostandfound.revealnews.org
 categories: news-apps
 ---
 

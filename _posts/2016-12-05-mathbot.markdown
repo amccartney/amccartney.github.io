@@ -3,6 +3,7 @@ layout:     page
 title:      "Mathbot"
 image:      /img/portfolio_images/mathbot.png
 thumbnail:  /img/thumbnails/mathbot.png
+proj-url:   #
 categories: website
 ---
 

@@ -3,6 +3,7 @@ layout:     page
 title:      "Represent"
 image:      /img/portfolio_images/represent.png
 thumbnail:  /img/thumbnails/represent.png
+proj-url:   http://projects.propublica.org/represent
 categories: news-apps
 ---
 

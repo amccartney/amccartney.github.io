@@ -1,8 +1,9 @@
 ---
-layout: page
-title:  "The Stanford Open Policing Project"
-image:  /img/portfolio_images/open_policing.png
-thumbnail: /img/thumbnails/open_policing.png
+layout:     page
+title:      "The Stanford Open Policing Project"
+image:      /img/portfolio_images/open_policing.png
+thumbnail:  /img/thumbnails/open_policing.png
+proj-url:   http://openpolicing.stanford.edu
 categories: website
 ---
 
