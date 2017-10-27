@@ -32,7 +32,7 @@ body {
     -o-font-feature-settings: "kern" 1;
     font-feature-settings: "kern" 1;
     font-kerning: normal;
-    transition: all .5s ease-in-out;
+    transition: background-color .5s ease-in-out;
     opacity: 0;
     border-bottom: 3px solid;
 
@@ -244,7 +244,7 @@ a.btn--primary {
 img {
     width: 100%;
     vertical-align: middle;
-    transition: all .2s ease;
+    // transition: all .2s ease;
     border: 1px solid gainsboro;
 }
 
@@ -252,6 +252,13 @@ img {
     display: block;
     background: url("/img/pattern.svg") repeat; 
     margin-bottom: $spacing-unit;
+}
+
+.twentytwenty-container {
+    border: 1px solid gainsboro;
+    margin-bottom: $spacing-unit;
+
+    img { border: 0; }
 }
 
 /**
@@ -290,6 +297,12 @@ li {
 h2 {
     font-weight: $bold-font-weight;
     font-size: 3rem;
+    letter-spacing: 0;
+}
+
+h3 {
+    font-weight: $bold-font-weight;
+    font-size: 2.5rem;
     letter-spacing: 0;
 }
 
@@ -516,6 +529,15 @@ th {
         .superscript {
             font-size: 1.8rem;
         }
+    }
+
+    h3 {
+        font-size: 3rem;
+        line-height: 3rem;
+        margin-top: 0;
+        text-align: left;
+        letter-spacing: .05rem;
+        margin-bottom: $spacing-unit;
     }
 
     a.btn { padding: 1.5rem 2rem; }

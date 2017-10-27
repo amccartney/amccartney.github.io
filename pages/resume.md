@@ -16,7 +16,7 @@ ___
 
     [ProPublica](http://propublica.org) *May 2017 - December 2017*  
 
-    Design, develop and implement a redesign for ProPublica's [Represent](http://projects.propublica.org/represent) app. Represent was written in Rails, and the front-end redesign involved implementing ProPublica's new CSS grid system--Josef--while rethinking each individual page's layout and information design.
+    Design, develop and implement a redesign for ProPublica's [Represent](/news-apps/2017/10/15/represent.html) app. Represent was written in Rails, and the front-end redesign involved implementing ProPublica's new CSS grid system--Josef--while rethinking each individual page's layout and information design.
 
 +   **Associate Program Developer**
 
@@ -34,7 +34,7 @@ ___
 
     [The Center for Investigative Reporting](https://www.revealnews.org/) *June 2015 - September 2015*  
 
-    Create web applications for the CIR Data Team and illustrate stories for Reveal, CIR’s weekly radio show. Projects include designing and coding the interface for The Lost & The Found, an application that allows users to try to find matches between missing persons reports and descriptions of unidentified bodies.
+    Create web applications for the CIR Data Team and illustrate stories for Reveal, CIR’s weekly radio show. Projects include designing and coding the interface for [The Lost & The Found](/news-apps/2017/09/12/lost-and-found.html), an application that allows users to try to find matches between missing persons reports and descriptions of unidentified bodies, and [The Wall](/news-apps/2017/08/12/the-wall.html), an interactive look at the current border security between the US and Mexico. 
 
 +   **Editor - PBS NewsHour Extra**  
 

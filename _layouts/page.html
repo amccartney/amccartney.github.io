@@ -52,10 +52,22 @@
     </div>
 
     <script src="{{ '/js/jquery.min.js' | prepend: site.baseurl }}"></script>
+    
+    <script src="{{ '/js/jquery.lazyload.min.js' | prepend: site.baseurl }}"></script>
     <script src="{{ '/js/jquery.fancybox.min.js' | prepend: site.baseurl }}"></script>
     <script src="{{ '/js/randomColor.min.js' | prepend: site.baseurl }}"></script>
+    
+    <script src="{{ '/js/jquery.event.move.js' | prepend: site.baseurl }}"></script>
+    <script src="{{ '/js/jquery.twentytwenty.js' | prepend: site.baseurl }}"></script>
 
     <script type="text/javascript">
+
+        $("img.lazyload").lazyload();
+        $("[data-fancybox]").fancybox();
+        
+        $("#container1").twentytwenty();
+        $("#container2").twentytwenty();
+        $("#container3").twentytwenty();
 
         document.addEventListener("DOMContentLoaded", function(){
             document.body.className = "loaded";
@@ -102,7 +114,8 @@
 
         });
 
-        $("[data-fancybox]").fancybox();
+
+
         
     </script>
 
