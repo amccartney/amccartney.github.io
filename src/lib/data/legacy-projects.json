@@ -1,0 +1,25 @@
+[{
+    "slug": "represent",
+    "title": "Represent",
+    "lead": "https://amccartney.github.io/img/before-after/after/homepage.png",
+    "original": "https://amccartney.github.io/news-apps/2017/10/15/represent.html",
+    "content": "I was responsible for redesigning and coding the front end of Represent, ProPublica’s Congress-tracking app. I oversaw the transition from Represent’s previous structure to the new ProPublica CSS grid system, replacing nine years’ worth of styles. This involved writing modular reusable stylesheets in SCSS, developing new controllers and views in Rails, implementing Javascript and Ruby querystring-filtered pages and creating automatically generating social media cards.",
+    "credits": "Credits: Derek Willis, lead politics news apps developer. Jeremy Merrill, news apps developer."
+},
+{
+    "slug": "lost-and-found",
+    "title": "The Lost and the Found",
+    "lead": "/projects/big/lostandfound.png",
+    "original": "https://amccartney.github.io/news-apps/2017/09/12/lost-and-found.html",
+    "content": "This application accompanied our investigation 'Left for Dead' which looked into the broken law enforcement systems that prevent unidentified bodies from being identified, and missing persons from being found. The app took data from the NamUs databases of missing and unidentified persons and allows users to search through both databases simultaneously.",
+    "credits": "Credits: Michael Corey, lead news applications developer. Jennifer LaFleur, editor. Emmanuel Martinez, data reporter."
+},
+{
+    "slug": "open-contractors",
+    "title": "Open Contractors",
+    "lead": "https://www.youtube.com/watch?v=rMZuEOK4DtY",
+    "original": "https://amccartney.github.io/news-apps/2017/03/24/open-contractors.html",
+    "content": "Open Contractors is a web application for exploring and making sense of Department of Defense contracting data. I designed and built the Django application and interface for interacting with the data. The project was funded by the Brown Institute for Media Innovation.",
+    "credits": "Credits: Alexandre Gonçalves, database engineer."
+}
+]
