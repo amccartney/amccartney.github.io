@@ -1,7 +1,5 @@
 <script>
-    export let tag;
     export let title;
-    export let desc;
     export let link;
     export let image;
     export let index;

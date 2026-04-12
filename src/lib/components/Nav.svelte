@@ -41,16 +41,4 @@
 	}
 
 	.brand { display: flex; align-items: center; gap: 12px; }
-
-
-	nav a {
-		margin-left: 1.5rem;
-		text-decoration: none;
-		color: var(--text);
-		font-weight: 500;
-	}
-
-	nav a:hover {
-		text-decoration: underline;
-	}
 </style>

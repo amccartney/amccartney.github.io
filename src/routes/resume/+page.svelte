@@ -133,11 +133,6 @@
         margin:0 0 12px;
 	}
 
-	.resume-header p {
-		margin-bottom: 1rem;
-		color: var(--olivetti-charcoal);
-	}
-
 	.download-link {
 		display: inline-block;
 		padding: 0.65rem 1rem;

@@ -6,7 +6,7 @@
 
 <section
     style="background: {background}; {style}"
-    class="custom-section"
+    class="custom-section {className}"
 >
     <div class="section-content">
         <slot />
