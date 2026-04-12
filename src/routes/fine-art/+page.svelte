@@ -3,7 +3,7 @@
 	import Section from "$lib/components/Section.svelte";
     import Card from "$lib/components/Card.svelte";
 	// Add any needed imports or data here
-	import projects	 from '../../lib/data/fine-art-projects.json';
+	import projects	 from '../../lib/data/fine-art-projects.json' with { type: 'json' };
 </script>
 
 <svelte:head>

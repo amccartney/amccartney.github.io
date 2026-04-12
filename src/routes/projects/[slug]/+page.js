@@ -1,7 +1,7 @@
 export const prerender = true;
 
 import { error } from '@sveltejs/kit';
-import legacy from '$lib/data/legacy-projects.json';
+import legacy from '$lib/data/legacy-projects.json' with { type: 'json' };
 
 /** @type {import('./$types').PageLoad} */
 export function load({ params }){
