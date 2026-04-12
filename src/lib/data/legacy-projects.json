@@ -9,7 +9,7 @@
 {
     "slug": "lost-and-found",
     "title": "The Lost and the Found",
-    "lead": "",
+    "lead": "https://amccartney.github.io/projects/lostandfound.png",
     "original": "https://amccartney.github.io/news-apps/2017/09/12/lost-and-found.html",
     "content": "This application accompanied our investigation 'Left for Dead' which looked into the broken law enforcement systems that prevent unidentified bodies from being identified, and missing persons from being found. The app took data from the NamUs databases of missing and unidentified persons and allows users to search through both databases simultaneously.",
     "credits": "Credits: Michael Corey, lead news applications developer. Jennifer LaFleur, editor. Emmanuel Martinez, data reporter."
