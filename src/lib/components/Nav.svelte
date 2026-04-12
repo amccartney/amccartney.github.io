@@ -3,7 +3,6 @@
 	import logo from '$lib/images/svelte-logo.svg';
 	import github from '$lib/images/github.svg';
 	import nav_items from '../../routes/nav-items.json';
-	import ProfileMark from './ProfileMark.svelte';
 </script>
 
 <header>

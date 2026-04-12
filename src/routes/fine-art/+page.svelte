@@ -1,7 +1,6 @@
 <script>
 	import Button from "$lib/components/Button.svelte";
 	import Section from "$lib/components/Section.svelte";
-	import SectionHead from "$lib/components/SectionHead.svelte";
     import Card from "$lib/components/Card.svelte";
 	// Add any needed imports or data here
 	import projects	 from '../../lib/data/fine-art-projects.json';

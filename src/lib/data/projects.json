@@ -119,30 +119,8 @@
         "image": "/projects/iowa-republican-precinct-results.png"
     },
     {
-        "title": "Represent",
-        "tag": "Legacy / Portfolio",
-        "desc": "Redesign and front-end work for ProPublica's Represent app; screenshots and before/after visuals.",
-        "link": "/projects/represent",
-        "image": "https://amccartney.github.io/img/before-after/after/homepage.png"
-    },
-    {
-        "title": "The Lost and the Found",
-        "tag": "Legacy / Portfolio",
-        "desc": "Design and interaction work for the Reveal 'Lost and the Found' application accompanying an investigation into unidentified bodies and missing persons.",
-        "link": "/projects/lost-and-found",
-        "image": "/projects/lostandfound.png"
-    },
-    {
-        "title": "Open Contractors",
-        "tag": "Legacy / Portfolio",
-        "desc": "Django application and interface for exploring Department of Defense contracting data.",
-        "link": "/projects/open-contractors",
-        "media": "https://www.youtube.com/watch?v=rMZuEOK4DtY",
-        "image": ""
-    },
-    {
         "title": "Drawings and Prints",
-        "tag": "Legacy / Portfolio",
+        "tag": "Fine Art",
         "desc": "Selected illustrations and graphics from editorial work.",
         "link": "/fine-art",
         "image": "/projects/fine-art/pastel_after_currin.jpg"
