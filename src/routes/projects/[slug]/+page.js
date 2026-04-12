@@ -1,3 +1,5 @@
+export const prerender = true;
+
 import { error } from '@sveltejs/kit';
 import legacy from '$lib/data/legacy-projects.json';
 
