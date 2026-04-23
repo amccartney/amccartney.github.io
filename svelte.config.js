@@ -17,7 +17,7 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		prerender: {
-			entries: ['*', ...projectSlugs]
+			entries: ['*', '/motorcycle-parking-helper', ...projectSlugs]
 		}
 	}
 };

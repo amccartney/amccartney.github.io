@@ -1,9 +1,9 @@
 [{
     "slug": "represent",
     "title": "Represent",
-    "lead": "https://amccartney.github.io/img/before-after/after/homepage.png",
+    "lead": "/projects/big/represent.png",
     "original": "https://amccartney.github.io/news-apps/2017/10/15/represent.html",
-    "content": "I was responsible for redesigning and coding the front end of Represent, ProPublica’s Congress-tracking app. I oversaw the transition from Represent’s previous structure to the new ProPublica CSS grid system, replacing nine years’ worth of styles. This involved writing modular reusable stylesheets in SCSS, developing new controllers and views in Rails, implementing Javascript and Ruby querystring-filtered pages and creating automatically generating social media cards.",
+    "content": "I was responsible for redesigning and coding the front end of <a href='https://projects.propublica.org/represent/' target='_blank'>Represent</a>, ProPublica’s Congress-tracking app. I oversaw the transition from Represent’s previous structure to the new ProPublica CSS grid system, replacing nine years’ worth of styles. This involved writing modular reusable stylesheets in SCSS, developing new controllers and views in Rails, implementing Javascript and Ruby querystring-filtered pages and creating automatically generating social media cards.",
     "credits": "Credits: Derek Willis, lead politics news apps developer. Jeremy Merrill, news apps developer."
 },
 {

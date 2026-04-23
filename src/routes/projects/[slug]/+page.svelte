@@ -59,13 +59,6 @@
 </article>
 
 <style>
-  .legacy-page h1 {
-    font-weight: bold;
-    color: var(--olivetti-charcoal);
-    letter-spacing: -1px;
-    font-size: 30px;
-    margin:0 0 12px;
-  }
   .legacy-page{ max-width:800px; margin: 20px auto; padding:0 20px; width: 100%; }
   .lead{ width:100%; height:auto; border-radius:6px; margin:10px 0 18px; display:block; }
   .video-wrap{ position:relative; width:100%; padding-top:56.25%; border-radius:8px; overflow:hidden; margin:10px 0 18px; }

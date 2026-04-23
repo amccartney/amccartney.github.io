@@ -84,6 +84,13 @@
         "image": "/projects/canada.png"
     },
     {
+        "title": "Represent",
+        "tag": "Interactive / Maps",
+        "desc": "An app for tracking the U.S. Congress, inclulding member data, committee assignments and voting history.",
+        "link": "/projects/represent",
+        "image": "/projects/represent.png"
+    },
+    {
         "title": "Vote Count: McCarthy Elected House Speaker After 15 Ballots",
         "tag": "Interactive / Politics",
         "desc": "Interactive vote tallies showing how every representative voted across multiple ballots.",
@@ -117,6 +124,13 @@
         "desc": "Detailed precinct maps and candidate breakdowns for the Iowa Republican caucuses.",
         "link": "https://www.nytimes.com/interactive/2024/01/15/us/elections/iowa-republican-precinct-results.html",
         "image": "/projects/iowa-republican-precinct-results.png"
+    },
+    {
+        "title": "S.F. Motorcycle Parking Helper",
+        "tag": "Interactive / Maps",
+        "desc": "A map of motorcycle parking in San Francisco, with data from the City of San Francisco.",
+        "link": "/motorcycle-parking-helper",
+        "image": null
     },
     {
         "title": "Drawings and Prints",
