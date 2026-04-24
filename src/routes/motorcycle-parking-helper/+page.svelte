@@ -463,10 +463,8 @@
 	<h1>San Francisco Motorcycle Parking Helper</h1>
 
 	<p class="intro">
-		Explore official motorcycle parking locations from open city data: unmetered spaces are shown in
-		<strong class="color-black">black</strong> and metered spaces in <strong class="color-orange">orange</strong>. Enter a San Francisco address to drop a pin, see a
-		0.2-mile radius, and read the closest spot plus how many metered and unmetered spaces fall
-		inside that circle. Verify signs and meters on site.
+		Search a location to find the closest dedicated motorcycle parking spots. Unmetered spaces are shown in
+		<strong class="color-black">black</strong> and metered spaces in <strong class="color-orange">orange</strong>.
 	</p>
 
 	<form class="search-form" onsubmit={(e) => { e.preventDefault(); handleSearch(); }}>
