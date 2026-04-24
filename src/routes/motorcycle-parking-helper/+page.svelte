@@ -312,6 +312,10 @@
 			m.addControl(new maplibregl.NavigationControl(), 'top-right');
 			m.dragPan.disable();
 			m.scrollZoom.disable();
+			m.fitBounds([
+				[SF_BBOX.minLon - 0.08, SF_BBOX.minLat - 0.08],
+				[SF_BBOX.maxLon + 0.08, SF_BBOX.maxLat + 0.08]
+			]);
 			// m.addControl(new maplibregl.AttributionControl({ compact: true }));
 
 			m.on('load', () => {
