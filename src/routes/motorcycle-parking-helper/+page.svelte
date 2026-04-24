@@ -494,15 +494,18 @@
 
 	{#if searchSummary && searchSummary.closest}
 		<section class="results" aria-live="polite">
-			<h2>
+			<p>
 				The closest parking is a {searchSummary.closest.kind === 'metered' ? 'metered' : 'unmetered'} space at <strong>{searchSummary.closest.label}</strong> about <strong>{searchSummary.closest.distanceMiles.toFixed(2)} miles</strong> away.
 
-			</h2>
+			</p>
 			
 			{#if searchSummary.withinUnmetered > 0 || searchSummary.withinMetered > 0}
-				<h2>
-					Within 0.2 miles there are <strong>{searchSummary.withinUnmetered} unmetered</strong> and <strong class="color-orange">{searchSummary.withinMetered} metered</strong> spaces.
-				</h2>
+			<p>
+				Within 0.2 miles there {searchSummary.withinUnmetered == 1 ? 'is' : 'are'} 
+				<strong>{searchSummary.withinUnmetered} unmetered</strong> 
+				and <strong class="color-orange">{searchSummary.withinMetered} metered</strong> 
+				{searchSummary.withinMetered == 1 ? 'space' : 'spaces'}.
+			</p>
 			{/if}
 		</section>
 	{/if}
@@ -578,14 +581,9 @@
 		border-radius: var(--radius);
 	}
 
-	.results h2 {
-		margin-top: 0;
-		font-size: var(--text-lg);
-	}
-
 	.results p {
 		margin: 0.5rem 0;
-		font-size: var(--text-base);
+		font-size: var(--text-lg);
 	}
 
 	.kind {
