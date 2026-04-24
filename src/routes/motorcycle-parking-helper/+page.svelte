@@ -1,12 +1,34 @@
 <script>
 	import { onDestroy, onMount } from 'svelte';
+	import {
+		parkingSpotPopupHtml,
+		rateAreaDescription,
+		motorcycleDictionaryRateSummary,
+		DICTIONARY_AUTOMOBILE_AND_SFPARK,
+		DICTIONARY_PORT_AUTOMOBILE,
+		DICTIONARY_TOUR_BUS
+	} from '$lib/motorcycle-parking/spotDetails';
 
 	const RADIUS_MILES = 0.2;
 	const SF_BBOX = { minLon: -122.52, minLat: 37.70, maxLon: -122.35, maxLat: 37.84 };
 	const UNMETERED_CSV = '/data/Motorcycle_Parking_-_Unmetered_20260423.csv';
 	const METERED_CSV = '/data/Metered_motorcycle_spaces_20260423.csv';
 
-	/** @typedef {{ lon: number; lat: number; label: string; kind: 'metered' | 'unmetered' }} ParkingSpot */
+	/**
+	 * @typedef {{
+	 *   lon: number;
+	 *   lat: number;
+	 *   label: string;
+	 *   kind: 'metered' | 'unmetered';
+	 *   rateArea?: string;
+	 *   meterType?: string;
+	 *   smartMeter?: string;
+	 *   sfparkArea?: string;
+	 *   streetAddress?: string;
+	 * }} ParkingSpot
+	 */
+
+	/** @typedef {{ rateArea: string; count: number; ms: number; ss: number; smartY: number; smartN: number }} MeterDistrictRow */
 
 	/** @type {HTMLDivElement | undefined} */
 	let mapContainer = $state();
@@ -23,8 +45,11 @@
 	let allSpots = $state([]);
 	let dataError = $state('');
 
-	/** @type {null | { address: string; lon: number; lat: number; closest: ParkingSpot & { distanceMiles: number }; withinUnmetered: number; withinMetered: number }} */
+	/** @type {null | { address: string; lon: number; lat: number; closest: ParkingSpot & { distanceMiles: number }; withinUnmetered: number; withinMetered: number; meterDistricts: MeterDistrictRow[] }} */
 	let searchSummary = $state(null);
+
+	/** @type {import('maplibre-gl').Popup | null} */
+	let hoverPopup = null;
 
 	/**
 	 * @param {string} line
@@ -108,6 +133,10 @@
 		const iLoc = header.indexOf('Location');
 		const iNum = header.indexOf('STREET_NUM');
 		const iName = header.indexOf('STREETNAME');
+		const iRate = header.indexOf('RATEAREA');
+		const iMeterType = header.indexOf('METER_TYPE');
+		const iSmart = header.indexOf('SMART_METE');
+		const iPark = header.indexOf('SFPARKAREA');
 		if (iLoc < 0) return [];
 		/** @type {ParkingSpot[]} */
 		const out = [];
@@ -121,11 +150,25 @@
 			const lon = Number(m[2]);
 			if (!Number.isFinite(lon) || !Number.isFinite(lat)) continue;
 			let label = 'Metered motorcycle space';
+			let streetAddress = '';
 			if (iNum >= 0 && iName >= 0) {
 				const street = `${row[iNum] ?? ''} ${row[iName] ?? ''}`.trim();
-				if (street) label = street;
+				if (street) {
+					label = street;
+					streetAddress = street;
+				}
 			}
-			out.push({ lon, lat, label, kind: 'metered' });
+			out.push({
+				lon,
+				lat,
+				label,
+				kind: 'metered',
+				rateArea: iRate >= 0 ? (row[iRate] ?? '').trim() : '',
+				meterType: iMeterType >= 0 ? (row[iMeterType] ?? '').trim() : '',
+				smartMeter: iSmart >= 0 ? (row[iSmart] ?? '').trim() : '',
+				sfparkArea: iPark >= 0 ? (row[iPark] ?? '').trim() : '',
+				streetAddress
+			});
 		}
 		return out;
 	}
@@ -184,20 +227,70 @@
 	}
 
 	/**
+	 * @param {ParkingSpot} s
+	 */
+	function spotToGeoFeature(s) {
+		if (s.kind === 'unmetered') {
+			return {
+				type: 'Feature',
+				properties: { kind: 'unmetered', address: s.label },
+				geometry: { type: 'Point', coordinates: [s.lon, s.lat] }
+			};
+		}
+		return {
+			type: 'Feature',
+			properties: {
+				kind: 'metered',
+				address: s.streetAddress || s.label,
+				rateArea: s.rateArea ?? '',
+				meterType: s.meterType ?? '',
+				smartMeter: s.smartMeter ?? '',
+				sfparkArea: s.sfparkArea ?? ''
+			},
+			geometry: { type: 'Point', coordinates: [s.lon, s.lat] }
+		};
+	}
+
+	/**
 	 * @param {ParkingSpot[]} spots
 	 * @param {'metered' | 'unmetered'} kind
 	 */
 	function spotsToFeatureCollection(spots, kind) {
 		return {
 			type: 'FeatureCollection',
-			features: spots
-				.filter((s) => s.kind === kind)
-				.map((s) => ({
-					type: 'Feature',
-					properties: { label: s.label, kind: s.kind },
-					geometry: { type: 'Point', coordinates: [s.lon, s.lat] }
-				}))
+			features: spots.filter((s) => s.kind === kind).map(spotToGeoFeature)
 		};
+	}
+
+	/**
+	 * @param {number} lon
+	 * @param {number} lat
+	 * @param {ParkingSpot[]} spots
+	 * @param {number} radiusMiles
+	 * @returns {MeterDistrictRow[]}
+	 */
+	function meterDistrictsWithinRadius(lon, lat, spots, radiusMiles) {
+		/** @type {Map<string, { count: number; ms: number; ss: number; smartY: number; smartN: number }>} */
+		const acc = new Map();
+		for (const s of spots) {
+			if (s.kind !== 'metered') continue;
+			const d = haversineMiles(lat, lon, s.lat, s.lon);
+			if (d > radiusMiles) continue;
+			const key = (s.rateArea || '').trim() || 'Unknown';
+			if (!acc.has(key)) {
+				acc.set(key, { count: 0, ms: 0, ss: 0, smartY: 0, smartN: 0 });
+			}
+			const row = acc.get(key);
+			if (!row) continue;
+			row.count++;
+			if (s.meterType === 'MS') row.ms++;
+			else if (s.meterType === 'SS') row.ss++;
+			if (s.smartMeter === 'Y') row.smartY++;
+			else row.smartN++;
+		}
+		return [...acc.entries()]
+			.map(([rateArea, v]) => ({ rateArea, ...v }))
+			.sort((a, b) => b.count - a.count);
 	}
 
 	/**
@@ -368,6 +461,40 @@
 					source: 'search-radius',
 					paint: { 'line-color': '#2c2c2c', 'line-width': 2, 'line-opacity': 0.7 }
 				});
+
+				hoverPopup = new maplibregl.Popup({
+					closeButton: false,
+					closeOnClick: false,
+					maxWidth: '320px',
+					offset: 12,
+					className: 'mcl-hover-popup'
+				});
+
+				let lastTipKey = '';
+				m.on('mousemove', (e) => {
+					const feats = m.queryRenderedFeatures(e.point, {
+						layers: ['unmetered-circles', 'metered-circles']
+					});
+					if (!feats.length) {
+						lastTipKey = '';
+						hoverPopup?.remove();
+						m.getCanvas().style.cursor = '';
+						return;
+					}
+					const f = feats[0];
+					if (!f?.geometry || f.geometry.type !== 'Point') return;
+					const coords = /** @type {[number, number]} */ (f.geometry.coordinates);
+					const props = f.properties || {};
+					const tipKey = `${coords[0]},${coords[1]},${props.kind}`;
+					m.getCanvas().style.cursor = 'pointer';
+					if (tipKey === lastTipKey) return;
+					lastTipKey = tipKey;
+					hoverPopup
+						?.setLngLat(coords)
+						.setHTML(parkingSpotPopupHtml(/** @type {Record<string, unknown>} */ (props)))
+						.addTo(m);
+				});
+
 				mapReady = true;
 			});
 		})();
@@ -378,6 +505,8 @@
 	});
 
 	onDestroy(() => {
+		hoverPopup?.remove();
+		hoverPopup = null;
 		searchMarker?.remove();
 		searchMarker = null;
 		map?.remove();
@@ -413,6 +542,7 @@
 				lat,
 				allSpots
 			);
+			const meterDistricts = meterDistrictsWithinRadius(lon, lat, allSpots, RADIUS_MILES);
 
 			if (searchMarker) {
 				searchMarker.remove();
@@ -446,7 +576,8 @@
 					lat,
 					closest,
 					withinUnmetered,
-					withinMetered
+					withinMetered,
+					meterDistricts
 				};
 			}
 		} catch {
@@ -500,8 +631,12 @@
 		<section class="results" aria-live="polite">
 			<p>
 				The closest parking is a {searchSummary.closest.kind === 'metered' ? 'metered' : 'unmetered'} space at <strong>{searchSummary.closest.label}</strong> about <strong>{searchSummary.closest.distanceMiles.toFixed(2)} miles</strong> away.
-
+				
+				{#if searchSummary.closest.kind === 'metered' && searchSummary.closest.rateArea}
+					It {searchSummary.closest.rateArea == "MC5" ? 'has' : 'has a rate of'} <strong>{motorcycleDictionaryRateSummary(searchSummary.closest.rateArea)}</strong>
+				{/if}
 			</p>
+			
 			
 			{#if searchSummary.withinUnmetered > 0 || searchSummary.withinMetered > 0}
 			<p>
@@ -510,6 +645,24 @@
 				and <strong class="color-orange">{searchSummary.withinMetered} metered</strong> 
 				{searchSummary.withinMetered == 1 ? 'space' : 'spaces'}.
 			</p>
+			{/if}
+
+			{#if searchSummary.meterDistricts.length > 0}
+				<h2 class="results-sub">Nearby meter pricing districts</h2>
+				<hr />
+				<ul class="results-rate-list">
+					{#each searchSummary.meterDistricts as d}
+						<div class="info-card">	
+							<strong><code>{d.rateArea}</code></strong>
+							&mdash; {d.count} metered space{d.count === 1 ? '' : 's'}
+							<ul>
+								<li>Rate: <strong>{motorcycleDictionaryRateSummary(d.rateArea)}</strong></li>
+								<li>Smart meter: {d.smartY} yes / {d.smartN} no</li>
+							</ul>
+							<!-- <span class="results-rate-desc">{rateAreaDescription(d.rateArea)}</span> -->
+						</div>
+					{/each}
+				</ul>
 			{/if}
 		</section>
 	{/if}
@@ -590,18 +743,10 @@
 		font-size: var(--text-lg);
 	}
 
-	.kind {
-		text-transform: lowercase;
-	}
-
 	.attribution {
 		margin-top: 2rem;
 		font-size: var(--text-sm);
 		color: var(--muted-foreground);
-	}
-
-	.attribution code {
-		font-size: 0.85em;
 	}
 
 	.color-black {
@@ -610,5 +755,101 @@
 
 	.color-orange {
 		color: var(--olivetti-orange);
+	}
+	
+	.info-card {
+		padding: 0.75rem 1rem;
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		background: var(--muted);
+		font-size: var(--text-sm);
+		width: 33%;
+	}
+
+	.info-card ul {
+		margin: 0.5rem 0 0;
+		padding-left: 1.25rem;
+		font-size: var(--text-sm);
+		line-height: 1.45;
+		list-style-type: disc;
+	}
+	.info-card li {
+		margin: 0.25rem 0;
+	}
+
+	@media (max-width: 768px) {
+		.info-card {
+			width: 100%;
+		}
+	}
+
+	.results-sub {
+		margin: 1.25rem 0 0.5rem;
+		font-size: var(--text-lg);
+		font-weight: var(--font-weight-medium);
+	}
+
+	.results-rate-note {
+		font-size: var(--text-base);
+		color: var(--muted-foreground);
+		margin: 0 0 0.75rem;
+	}
+
+	.results-rate-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		padding: 0;
+	}
+
+
+	:global(.mcl-hover-popup .maplibregl-popup-content) {
+		padding: 10px 12px;
+		border-radius: 6px;
+		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+	}
+
+	:global(.map-tip-addr) {
+		font-weight: var(--font-weight-black);
+		margin-bottom: 0.35rem;
+		font-size: var(--text-sm);
+	}
+
+	:global(.map-tip-line) {
+		margin: 0.35rem 0;
+		font-size: var(--text-sm);
+		line-height: 1.45;
+	}
+
+	:global(.map-tip-meta) {
+		margin: 0.35rem 0 0;
+		font-size: var(--text-sm);
+		color: var(--muted-foreground);
+		line-height: 1.4;
+	}
+
+	:global(.map-tip-list) {
+		margin: 0.35rem 0 0;
+		padding-left: 1.1rem;
+		font-size: var(--text-sm);
+		line-height: 1.45;
+	}
+
+	:global(.map-tip-dict-rate) {
+		margin: 0 0 0.35rem;
+		font-size: var(--text-sm);
+		line-height: 1.45;
+	}
+
+	:global(.map-tip-dict-note) {
+		margin: 0 0 0.5rem;
+		font-size: var(--text-sm);
+		color: var(--muted-foreground);
+		line-height: 1.45;
+	}
+
+	:global(.map-tip-unknown) {
+		font-size: var(--text-sm);
+		color: var(--destructive);
 	}
 </style>
