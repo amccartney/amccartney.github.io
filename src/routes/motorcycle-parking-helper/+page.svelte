@@ -497,6 +497,7 @@
 				...(cooperativeGestures ? { cooperativeGestures: true } : {})
 			});
 			map = m;
+			m.scrollZoom.disable();
 			m.addControl(new maplibregl.NavigationControl(), 'top-right');
 			// m.fitBounds([
 			// 	[SF_BBOX.minLon - 0.02, SF_BBOX.minLat - 0.02],
