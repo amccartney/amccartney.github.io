@@ -300,8 +300,8 @@
 			const m = new maplibregl.Map({
 				container: mapContainer,
 				style,
-				center: [-122.4194, 37.7749],
-				zoom: 12,
+				center: [-122.44, 37.765],
+				zoom: 11,
 				maxBounds: [
 					[SF_BBOX.minLon - 0.08, SF_BBOX.minLat - 0.08],
 					[SF_BBOX.maxLon + 0.08, SF_BBOX.maxLat + 0.08]
@@ -309,6 +309,8 @@
 			});
 			map = m;
 			m.addControl(new maplibregl.NavigationControl(), 'top-right');
+			m.dragPan.disable();
+			m.scrollZoom.disable();
 
 			m.on('load', () => {
 				if (cancelled) return;
@@ -492,19 +494,16 @@
 
 	{#if searchSummary && searchSummary.closest}
 		<section class="results" aria-live="polite">
-			<h2>Results for your search</h2>
-			<p><strong>Searched location:</strong> {searchSummary.address}</p>
-			<p>
-				<strong>Closest parking:</strong>
-				{searchSummary.closest.label}
-				<span class="kind">({searchSummary.closest.kind === 'metered' ? 'metered' : 'unmetered'})</span>
-				— about {searchSummary.closest.distanceMiles.toFixed(2)} miles away.
-			</p>
-			<p>
-				<strong>Within 0.2 miles:</strong>
-				{searchSummary.withinUnmetered} unmetered,
-				{searchSummary.withinMetered} metered.
-			</p>
+			<h2>
+				The closest parking is a {searchSummary.closest.kind === 'metered' ? 'metered' : 'unmetered'} space at <strong>{searchSummary.closest.label}</strong> about <strong>{searchSummary.closest.distanceMiles.toFixed(2)} miles</strong> away.
+
+			</h2>
+			
+			{#if searchSummary.withinUnmetered > 0 || searchSummary.withinMetered > 0}
+				<h2>
+					Within 0.2 miles there are <strong>{searchSummary.withinUnmetered} unmetered</strong> and <strong class="color-orange">{searchSummary.withinMetered} metered</strong> spaces.
+				</h2>
+			{/if}
 		</section>
 	{/if}
 
@@ -564,7 +563,7 @@
 
 	.map-wrap {
 		width: 100%;
-		height: min(70vh, 520px);
+		height: min(50vh, 520px);
 		border-radius: var(--radius);
 		border: 1px solid var(--border);
 		overflow: hidden;
@@ -591,6 +590,7 @@
 
 	.results p {
 		margin: 0.5rem 0;
+		font-size: var(--text-base);
 	}
 
 	.kind {
