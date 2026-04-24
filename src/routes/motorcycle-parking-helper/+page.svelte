@@ -499,10 +499,10 @@
 			map = m;
 			m.scrollZoom.disable();
 			m.addControl(new maplibregl.NavigationControl(), 'top-right');
-			// m.fitBounds([
-			// 	[SF_BBOX.minLon - 0.02, SF_BBOX.minLat - 0.02],
-			// 	[SF_BBOX.maxLon + 0.02, SF_BBOX.maxLat + 0.02]
-			// ]);
+			m.fitBounds([
+				[SF_BBOX.minLon - 0.01, SF_BBOX.minLat - 0.01],
+				[SF_BBOX.maxLon + 0.01, SF_BBOX.maxLat + 0.01]
+			]);
 			// m.addControl(new maplibregl.AttributionControl({ compact: true }));
 
 			m.on('load', () => {
@@ -793,7 +793,7 @@
 	{#if searchSummary && searchSummary.closest}
 		<section class="results" aria-live="polite">
 			<p>
-				The closest dedicated parking is a {searchSummary.closest.kind === 'metered' ? 'metered' : 'unmetered'} space at <strong>{searchSummary.closest.label}</strong>, {closestDistanceCaption(searchSummary.closest)} away.
+				The closest dedicated motorcycle parking is a {searchSummary.closest.kind === 'metered' ? 'metered' : 'unmetered'} space at <strong>{searchSummary.closest.label}</strong>, {closestDistanceCaption(searchSummary.closest)} away.
 				
 				{#if searchSummary.closest.kind === 'metered' && searchSummary.closest.rateArea}
 					It {searchSummary.closest.rateArea == "MC5" ? 'has' : 'has a rate of'} <strong>{motorcycleDictionaryRateSummary(searchSummary.closest.rateArea)}</strong>
@@ -848,7 +848,6 @@
 
 	.search-form {
 		display: flex;
-		flex-wrap: wrap;
 		gap: 0.5rem;
 		margin-bottom: 1rem;
 		align-items: center;
