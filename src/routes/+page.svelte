@@ -14,7 +14,7 @@
 <Section className="hero">
 	<div class="grid">
 		<div class="hero-text">
-			<p>
+			<p class="intro">
 				I'm a story editor on the Graphics team at The New York Times. I edit, manage and design data-centered visuals alongside a team of talented designers, developers and journalists focused mostly on live election results and trackers. 
 			</p>
 		</div>

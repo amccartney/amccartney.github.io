@@ -145,6 +145,12 @@ p {
   font-weight: 400;
 }
 
+.intro {
+	max-width: 650px;
+	margin-bottom: 1.25rem;
+	/* text-wrap: balance; */
+}
+
 a {
 	color: var(--color-theme-1);
 	text-decoration: none;
