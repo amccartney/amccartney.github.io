@@ -479,7 +479,7 @@
 			id="address-search"
 			type="search"
 			autocomplete="street-address"
-			placeholder="e.g. 1 Ferry Building, San Francisco"
+			placeholder="e.g. The Ferry Building"
 			bind:value={searchQuery}
 			disabled={loading}
 		/>
