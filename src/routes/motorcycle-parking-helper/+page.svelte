@@ -507,6 +507,22 @@
 
 			m.on('load', () => {
 				if (cancelled) return;
+				/** Spot radius in px; grows when zooming in (MapLibre expression). */
+				const spotCircleRadius = /** @type {any} */ ([
+					'interpolate',
+					['linear'],
+					['zoom'],
+					10,
+					2,
+					12,
+					3,
+					14,
+					4.5,
+					16,
+					7,
+					18,
+					10
+				]);
 				m.addSource('metered', {
 					type: 'geojson',
 					data: /** @type {any} */ (meteredSpotsToClusteredFeatureCollection(combinedSpots))
@@ -516,7 +532,7 @@
 					type: 'circle',
 					source: 'metered',
 					paint: {
-						'circle-radius': 3,
+						'circle-radius': spotCircleRadius,
 						'circle-color': '#ff6b35',
 						'circle-opacity': 0.5,
 						'circle-stroke-width': 1,
@@ -533,7 +549,7 @@
 					type: 'circle',
 					source: 'unmetered',
 					paint: {
-						'circle-radius': 3,
+						'circle-radius': spotCircleRadius,
 						'circle-color': '#2c2c2c',
 						'circle-opacity': 0.5,
 						'circle-stroke-width': 1,
@@ -551,7 +567,7 @@
 						type: 'circle',
 						source: 'garages',
 						paint: {
-							'circle-radius': 3,
+							'circle-radius': spotCircleRadius,
 							'circle-color': "#3a8d89",
 							'circle-opacity': 0.5,
 							'circle-stroke-width': 1,
@@ -582,8 +598,68 @@
 					closeOnClick: false,
 					maxWidth: '320px',
 					offset: 12,
-					className: 'mcl-hover-popup'
+					className: 'mcl-hover-popup',
+					/** Inset from map edges when auto-picking anchor so the box stays on-screen. */
+					padding: { top: 12, bottom: 12, left: 12, right: 12 }
 				});
+
+				const HOVER_POPUP_GUTTER = 10;
+				/**
+				 * MapLibre anchor math assumes the popup fits inside the canvas; very wide tips
+				 * still overflow on narrow maps. Shrink max width to the map and nudge with margins.
+				 */
+				function clampHoverPopupToMap() {
+					const popup = hoverPopup;
+					if (!popup?.isOpen()) return;
+					const el = popup.getElement();
+					if (!el) return;
+					const mapEl = m.getContainer();
+					const g = HOVER_POPUP_GUTTER;
+					const mapW = mapEl.clientWidth;
+					const vwCap =
+						typeof window !== 'undefined' ? Math.max(0, window.innerWidth - 2 * g) : mapW;
+					const inner = Math.min(mapW - 2 * g, vwCap);
+					const cap = Math.min(320, Math.max(120, inner));
+					popup.setMaxWidth(`${cap}px`);
+
+					el.style.marginLeft = '0px';
+					el.style.marginTop = '0px';
+					void el.offsetHeight;
+
+					const mapRect = mapEl.getBoundingClientRect();
+					let pr = el.getBoundingClientRect();
+					if (pr.left < mapRect.left + g) {
+						el.style.marginLeft = `${Math.round(mapRect.left + g - pr.left)}px`;
+					} else if (pr.right > mapRect.right - g) {
+						el.style.marginLeft = `${Math.round(mapRect.right - g - pr.right)}px`;
+					}
+
+					pr = el.getBoundingClientRect();
+					if (pr.top < mapRect.top + g) {
+						el.style.marginTop = `${Math.round(mapRect.top + g - pr.top)}px`;
+					} else if (pr.bottom > mapRect.bottom - g) {
+						el.style.marginTop = `${Math.round(mapRect.bottom - g - pr.bottom)}px`;
+					}
+				}
+
+				function scheduleClampHoverPopup() {
+					requestAnimationFrame(() => {
+						clampHoverPopupToMap();
+						requestAnimationFrame(() => clampHoverPopupToMap());
+					});
+				}
+
+				const onMapMoveForPopup = () => {
+					if (hoverPopup?.isOpen()) scheduleClampHoverPopup();
+				};
+				m.on('move', onMapMoveForPopup);
+				m.on('resize', onMapMoveForPopup);
+
+				const onWindowResizeForPopup = () => onMapMoveForPopup();
+				if (typeof window !== 'undefined') {
+					window.addEventListener('resize', onWindowResizeForPopup);
+					m.once('remove', () => window.removeEventListener('resize', onWindowResizeForPopup));
+				}
 
 				let lastTipKey = '';
 				m.on('mousemove', (e) => {
@@ -614,6 +690,7 @@
 							?.setLngLat(coords)
 							.setHTML(parkingSpotPopupHtml(/** @type {Record<string, unknown>} */ (props)))
 							.addTo(m);
+						scheduleClampHoverPopup();
 					}
 				});
 
@@ -830,7 +907,7 @@
 
 	<p class="attribution">
 		Map tiles © <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a>. Parking data: <a href="https://data.sfgov.org/browse?category=Transportation" target="_blank">City of S.F.</a> and <a href="https://www.sfmta.com/garages-lots-list?field_garage_services_value=Motorcycle+Rate&amp;field_neighborhoods_target_id_verf=All&amp;field_parking_type_value=All" target="_blank" rel="noopener noreferrer">SFMTA</a> (April 2026). Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors.
-	<span class="routing-note">Walking time uses OpenStreetMap paths via a public OSRM demo router (dead ends and one-way rules included where mapped).</span>
+	<span class="routing-note">Walking time uses OpenStreetMap paths via a public OSRM demo router.</span>
 	</p>
 </div>
 
@@ -878,6 +955,8 @@
 	}
 
 	.map-wrap {
+		container-type: inline-size;
+		container-name: mcl-map;
 		height: min(50vh, 520px);
 		border-radius: var(--radius);
 		border: 1px solid var(--border);
@@ -975,10 +1054,19 @@
 	}
 
 
+	/* Max width is set in JS (`setMaxWidth`) from map width so it isn’t wider than the canvas. */
+	:global(.maplibregl-popup.mcl-hover-popup) {
+		box-sizing: border-box;
+	}
+
 	:global(.mcl-hover-popup .maplibregl-popup-content) {
 		padding: 10px 12px;
 		border-radius: 6px;
 		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+		max-width: 100%;
+		box-sizing: border-box;
+		overflow-wrap: break-word;
+		word-break: break-word;
 	}
 
 	:global(.map-tip-addr) {
