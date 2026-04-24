@@ -79,7 +79,7 @@
         background-color: var(--olivetti-red);
     }
     .tile.blue::after {
-        background-color: var(--olivetti-blue);
+        background-color: var(--olivetti-teal);
     }
     .tile.green::after {
         background-color: var(--olivetti-green);

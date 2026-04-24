@@ -1,3 +1,5 @@
+import { formatTitleCase } from '$lib/formatTitleCase';
+
 /**
  * Motorcycle and related rate text is taken from the City’s open-data dictionary for
  * “Metered motorcycle spaces” (DataSF `uf55-k7py`), PDF asset
@@ -120,10 +122,52 @@ export function rateAreaDescription(rateArea) {
  */
 export function parkingSpotPopupHtml(p) {
 	const kind = p.kind;
-	const address = escapeHtml(String(p.address || 'Address unknown'));
+
+	if (kind === 'garage') {
+		const name = escapeHtml(formatTitleCase(String(p.name || 'SFMTA facility')));
+		const address = escapeHtml(formatTitleCase(String(p.address || '')));
+		const phone = escapeHtml(String(p.phone || ''));
+		const ft = escapeHtml(String(p.facility_type || ''));
+		const rawUrl = String(p.url || 'https://www.sfmta.com/garages-lots-list');
+		const href = escapeHtml(rawUrl);
+		return `<div class="map-tip"><div class="map-tip-addr">${name}</div>
+			<p class="map-tip-line"><strong>SFMTA ${ft}</strong> with motorcycle rates.</p>
+			<ul class="map-tip-list">
+				<li><strong>Address:</strong> ${address}</li>
+				${phone ? `<li><strong>Phone:</strong> ${phone}</li>` : ''}
+			</ul></div>`;
+	}
+
+	const address = escapeHtml(formatTitleCase(String(p.address || 'Address unknown')));
 
 	if (kind === 'unmetered') {
 		return `<div class="map-tip"><div class="map-tip-addr">${address}</div><p class="map-tip-line"><strong>Unmetered</strong> motorcycle parking.</p></div>`;
+	}
+
+	const isCluster = p.isCluster === true || p.isCluster === 'true';
+	if (kind === 'metered' && isCluster) {
+		const n = Math.max(0, Math.floor(Number(p.spotCount) || 0));
+		/** @type {Record<string, number>} */
+		let rateCounts = {};
+		try {
+			rateCounts = /** @type {Record<string, number>} */ (
+				JSON.parse(String(p.rateAreasJson || '{}'))
+			);
+		} catch {
+			rateCounts = {};
+		}
+		const rates = Object.entries(rateCounts)
+			.sort((a, b) => Number(b[1]) - Number(a[1]))
+			.slice(0, 10)
+			.map(
+				([code, cnt]) =>
+					`${motorcycleDictionaryRateHtml(code)}`
+			)
+			.join('');
+		const list =
+			rates || 'Rate district breakdown unavailable for this cluster.';
+		return `<div class="map-tip"><div class="map-tip-addr">${address}</div>
+			<p class="map-tip-line"><strong>${n} metered spaces</strong> at ${rates}</p>`;
 	}
 
 	const rateArea = String(p.rateArea || '').trim();
@@ -139,7 +183,7 @@ export function parkingSpotPopupHtml(p) {
 		<ul class="map-tip-list">
 			<li><strong>Hourly rate:</strong> ${hourly}</li>
 			<li><strong>Smart meter:</strong> ${escapeHtml(smart)}</li>
-			${park ? `<li><strong>SFpark area label:</strong> ${escapeHtml(park)}</li>` : ''}
+			${park ? `<li><strong>SFpark area label:</strong> ${escapeHtml(formatTitleCase(park))}</li>` : ''}
 		</ul>`;
 		// <p class="map-tip-meta">${escapeHtml(rateAreaDescription(rateArea))}</p>
 

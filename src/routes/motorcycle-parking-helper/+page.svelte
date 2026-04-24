@@ -8,11 +8,15 @@
 		DICTIONARY_PORT_AUTOMOBILE,
 		DICTIONARY_TOUR_BUS
 	} from '$lib/motorcycle-parking/spotDetails';
+	import { findWalkingClosestSpot } from '$lib/motorcycle-parking/walkingClosest';
+	import { meteredSpotsToClusteredFeatureCollection } from '$lib/motorcycle-parking/meteredClusters';
+	import { formatTitleCase } from '$lib/formatTitleCase';
 
 	const RADIUS_MILES = 0.2;
 	const SF_BBOX = { minLon: -122.52, minLat: 37.70, maxLon: -122.35, maxLat: 37.84 };
 	const UNMETERED_CSV = '/data/Motorcycle_Parking_-_Unmetered_20260423.csv';
 	const METERED_CSV = '/data/Metered_motorcycle_spaces_20260423.csv';
+	const GARAGES_CSV = '/data/sfmta_garages_motorcycle_rate_20260424.csv';
 
 	/**
 	 * @typedef {{
@@ -36,6 +40,8 @@
 	let map = $state(null);
 	/** @type {import('maplibre-gl').Marker | null} */
 	let searchMarker = $state(null);
+	/** @type {import('maplibregl').Marker | null} */
+	let closestSpotMarker = null;
 
 	let searchQuery = $state('');
 	let loading = $state(false);
@@ -45,7 +51,17 @@
 	let allSpots = $state([]);
 	let dataError = $state('');
 
-	/** @type {null | { address: string; lon: number; lat: number; closest: ParkingSpot & { distanceMiles: number }; withinUnmetered: number; withinMetered: number; meterDistricts: MeterDistrictRow[] }} */
+	/**
+	 * @typedef {ParkingSpot & {
+	 *   distanceMiles: number;
+	 *   birdMiles: number;
+	 *   usedWalkingRouting: boolean;
+	 *   walkingDurationSec?: number;
+	 *   walkingDistanceM?: number;
+	 * }} ClosestSpotResult
+	 */
+
+	/** @type {null | { address: string; lon: number; lat: number; closest: ClosestSpotResult; withinUnmetered: number; withinMetered: number; meterDistricts: MeterDistrictRow[] }} */
 	let searchSummary = $state(null);
 
 	/** @type {import('maplibre-gl').Popup | null} */
@@ -174,6 +190,72 @@
 	}
 
 	/**
+	 * @typedef {{ name: string; address: string; phone: string; facility_type: string; lon: number; lat: number; url: string }} GarageRow
+	 */
+
+	/**
+	 * @param {string} text
+	 * @returns {GarageRow[]}
+	 */
+	function parseGaragesCsv(text) {
+		const lines = text.trim().split(/\r?\n/);
+		if (lines.length < 2) return [];
+		const header = splitCsvLine(lines[0]);
+		const iName = header.indexOf('name');
+		const iAddr = header.indexOf('address_line');
+		const iCity = header.indexOf('city');
+		const iState = header.indexOf('state');
+		const iZip = header.indexOf('zip');
+		const iPhone = header.indexOf('phone');
+		const iType = header.indexOf('facility_type');
+		const iLon = header.indexOf('lon');
+		const iLat = header.indexOf('lat');
+		const iUrl = header.indexOf('source_url');
+		if (iLon < 0 || iLat < 0) return [];
+		/** @type {GarageRow[]} */
+		const out = [];
+		for (let li = 1; li < lines.length; li++) {
+			const row = splitCsvLine(lines[li]);
+			if (!row.length) continue;
+			const lon = Number(row[iLon]);
+			const lat = Number(row[iLat]);
+			if (!Number.isFinite(lon) || !Number.isFinite(lat)) continue;
+			const line = [row[iAddr], row[iCity], row[iState], row[iZip]].filter(Boolean).join(', ');
+			out.push({
+				name: row[iName] ?? '',
+				address: line,
+				phone: row[iPhone] ?? '',
+				facility_type: row[iType] ?? '',
+				lon,
+				lat,
+				url: row[iUrl] ?? ''
+			});
+		}
+		return out;
+	}
+
+	/**
+	 * @param {GarageRow[]} garages
+	 */
+	function garagesToFeatureCollection(garages) {
+		return {
+			type: 'FeatureCollection',
+			features: garages.map((g) => ({
+				type: 'Feature',
+				properties: {
+					kind: 'garage',
+					name: g.name,
+					address: g.address,
+					phone: g.phone,
+					facility_type: g.facility_type,
+					url: g.url
+				},
+				geometry: { type: 'Point', coordinates: [g.lon, g.lat] }
+			}))
+		};
+	}
+
+	/**
 	 * @param {number} lat1
 	 * @param {number} lon1
 	 * @param {number} lat2
@@ -233,7 +315,7 @@
 		if (s.kind === 'unmetered') {
 			return {
 				type: 'Feature',
-				properties: { kind: 'unmetered', address: s.label },
+				properties: { kind: 'unmetered', address: formatTitleCase(s.label) },
 				geometry: { type: 'Point', coordinates: [s.lon, s.lat] }
 			};
 		}
@@ -241,7 +323,7 @@
 			type: 'Feature',
 			properties: {
 				kind: 'metered',
-				address: s.streetAddress || s.label,
+				address: formatTitleCase(s.streetAddress || s.label),
 				rateArea: s.rateArea ?? '',
 				meterType: s.meterType ?? '',
 				smartMeter: s.smartMeter ?? '',
@@ -297,25 +379,19 @@
 	 * @param {number} lon
 	 * @param {number} lat
 	 * @param {ParkingSpot[]} spots
+	 * @param {number} radiusMiles
 	 */
-	function summarizeAroundPoint(lon, lat, spots) {
-		/** @type {(ParkingSpot & { distanceMiles: number }) | null} */
-		let closest = null;
-		let minD = Infinity;
+	function countWithinRadius(lon, lat, spots, radiusMiles) {
 		let withinUnmetered = 0;
 		let withinMetered = 0;
 		for (const s of spots) {
 			const d = haversineMiles(lat, lon, s.lat, s.lon);
-			if (d < minD) {
-				minD = d;
-				closest = { ...s, distanceMiles: d };
-			}
-			if (d <= RADIUS_MILES) {
+			if (d <= radiusMiles) {
 				if (s.kind === 'unmetered') withinUnmetered++;
 				else withinMetered++;
 			}
 		}
-		return { closest, withinUnmetered, withinMetered };
+		return { withinUnmetered, withinMetered };
 	}
 
 	/**
@@ -337,7 +413,8 @@
 			if (!pointInSfBbox(flon, flat)) continue;
 			const p = f.properties ?? {};
 			const parts = [p.name, p.street, p.postcode, p.city].filter(Boolean);
-			const address = parts.length ? parts.join(', ') : q;
+			const raw = parts.length ? parts.join(', ') : q;
+			const address = formatTitleCase(raw);
 			return { lon: flon, lat: flat, address };
 		}
 		return null;
@@ -352,6 +429,8 @@
 
 			let unmetered = [];
 			let metered = [];
+			/** @type {GarageRow[]} */
+			let garages = [];
 			try {
 				const [unText, mText] = await Promise.all([
 					fetch(UNMETERED_CSV).then((r) => {
@@ -372,6 +451,16 @@
 				return;
 			}
 
+			try {
+				const gRes = await fetch(GARAGES_CSV);
+				if (gRes.ok) {
+					const gText = await gRes.text();
+					if (!cancelled) garages = parseGaragesCsv(gText);
+				}
+			} catch {
+				/* optional layer */
+			}
+
 			if (cancelled || !mapContainer) return;
 
 			const combinedSpots = [...unmetered, ...metered];
@@ -390,6 +479,11 @@
 				layers: [{ id: 'osm', type: 'raster', source: 'osm' }]
 			};
 
+			/** Two-finger pan on touch; keeps page scroll from hijacking the map (see cooperativeGestures). */
+			const cooperativeGestures =
+				typeof window !== 'undefined' &&
+				window.matchMedia('(pointer: coarse)').matches;
+
 			const m = new maplibregl.Map({
 				container: mapContainer,
 				style,
@@ -399,12 +493,11 @@
 					[SF_BBOX.minLon - 0.08, SF_BBOX.minLat - 0.08],
 					[SF_BBOX.maxLon + 0.08, SF_BBOX.maxLat + 0.08]
 				],
-				attributionControl: false
+				attributionControl: false,
+				...(cooperativeGestures ? { cooperativeGestures: true } : {})
 			});
 			map = m;
 			m.addControl(new maplibregl.NavigationControl(), 'top-right');
-			m.dragPan.disable();
-			m.scrollZoom.disable();
 			// m.fitBounds([
 			// 	[SF_BBOX.minLon - 0.02, SF_BBOX.minLat - 0.02],
 			// 	[SF_BBOX.maxLon + 0.02, SF_BBOX.maxLat + 0.02]
@@ -413,6 +506,23 @@
 
 			m.on('load', () => {
 				if (cancelled) return;
+				m.addSource('metered', {
+					type: 'geojson',
+					data: /** @type {any} */ (meteredSpotsToClusteredFeatureCollection(combinedSpots))
+				});
+				m.addLayer({
+					id: 'metered-circles',
+					type: 'circle',
+					source: 'metered',
+					paint: {
+						'circle-radius': 3,
+						'circle-color': '#ff6b35',
+						'circle-opacity': 0.5,
+						'circle-stroke-width': 1,
+						'circle-stroke-color': '#ff6b35'
+					}
+				});
+
 				m.addSource('unmetered', {
 					type: 'geojson',
 					data: /** @type {any} */ (spotsToFeatureCollection(combinedSpots, 'unmetered'))
@@ -423,27 +533,31 @@
 					source: 'unmetered',
 					paint: {
 						'circle-radius': 3,
-						'circle-color': 'rgba(44,44,44,.8)',
+						'circle-color': '#2c2c2c',
+						'circle-opacity': 0.5,
 						'circle-stroke-width': 1,
 						'circle-stroke-color': '#2c2c2c'
 					}
 				});
 
-				m.addSource('metered', {
-					type: 'geojson',
-					data: /** @type {any} */ (spotsToFeatureCollection(combinedSpots, 'metered'))
-				});
-				m.addLayer({
-					id: 'metered-circles',
-					type: 'circle',
-					source: 'metered',
-					paint: {
-						'circle-radius': 3,
-						'circle-color': 'rgba(255,107,53,.6)',
-						'circle-stroke-width': 1,
-						'circle-stroke-color': '#ff6b35'
-					}
-				});
+				if (garages.length > 0) {
+					m.addSource('garages', {
+						type: 'geojson',
+						data: /** @type {any} */ (garagesToFeatureCollection(garages))
+					});
+					m.addLayer({
+						id: 'garages-circles',
+						type: 'circle',
+						source: 'garages',
+						paint: {
+							'circle-radius': 3,
+							'circle-color': "#3a8d89",
+							'circle-opacity': 0.5,
+							'circle-stroke-width': 1,
+							'circle-stroke-color': "#3a8d89"
+						}
+					});
+				}
 
 				m.addSource('search-radius', {
 					type: 'geojson',
@@ -472,9 +586,12 @@
 
 				let lastTipKey = '';
 				m.on('mousemove', (e) => {
-					const feats = m.queryRenderedFeatures(e.point, {
-						layers: ['unmetered-circles', 'metered-circles']
-					});
+					const layers = /** @type {string[]} */ (
+						garages.length > 0
+							? ['garages-circles', 'unmetered-circles', 'metered-circles']
+							: ['unmetered-circles', 'metered-circles']
+					);
+					const feats = m.queryRenderedFeatures(e.point, { layers });
 					if (!feats.length) {
 						lastTipKey = '';
 						hoverPopup?.remove();
@@ -482,17 +599,21 @@
 						return;
 					}
 					const f = feats[0];
-					if (!f?.geometry || f.geometry.type !== 'Point') return;
-					const coords = /** @type {[number, number]} */ (f.geometry.coordinates);
+					if (!f?.geometry) return;
+					const geom = f.geometry;
 					const props = f.properties || {};
-					const tipKey = `${coords[0]},${coords[1]},${props.kind}`;
 					m.getCanvas().style.cursor = 'pointer';
-					if (tipKey === lastTipKey) return;
-					lastTipKey = tipKey;
-					hoverPopup
-						?.setLngLat(coords)
-						.setHTML(parkingSpotPopupHtml(/** @type {Record<string, unknown>} */ (props)))
-						.addTo(m);
+
+					if (geom.type === 'Point') {
+						const coords = /** @type {[number, number]} */ (geom.coordinates);
+						const tipKey = `${coords[0]},${coords[1]},${props.kind},${String(props.clusterKey ?? '')}`;
+						if (tipKey === lastTipKey) return;
+						lastTipKey = tipKey;
+						hoverPopup
+							?.setLngLat(coords)
+							.setHTML(parkingSpotPopupHtml(/** @type {Record<string, unknown>} */ (props)))
+							.addTo(m);
+					}
 				});
 
 				mapReady = true;
@@ -507,15 +628,32 @@
 	onDestroy(() => {
 		hoverPopup?.remove();
 		hoverPopup = null;
+		closestSpotMarker?.remove();
+		closestSpotMarker = null;
 		searchMarker?.remove();
 		searchMarker = null;
 		map?.remove();
 		map = null;
 	});
 
+	/**
+	 * @param {ClosestSpotResult} c
+	 */
+	function closestDistanceCaption(c) {
+		if (c.usedWalkingRouting && c.walkingDurationSec != null) {
+			const min = Math.max(1, Math.round(c.walkingDurationSec / 60));
+			const walkMi = c.distanceMiles.toFixed(2);
+			const bird = c.birdMiles.toFixed(2);
+			return `about a ${min} min walk (${walkMi})`;
+		}
+		return `about ${c.birdMiles.toFixed(2)} mi straight-line (walking route unavailable)`;
+	}
+
 	async function handleSearch() {
 		geocodeError = '';
 		searchSummary = null;
+		closestSpotMarker?.remove();
+		closestSpotMarker = null;
 		const q = searchQuery.trim();
 		if (!q) {
 			geocodeError = 'Enter an address or place in San Francisco.';
@@ -537,12 +675,15 @@
 			}
 
 			const { lon, lat, address } = hit;
-			const { closest, withinUnmetered, withinMetered } = summarizeAroundPoint(
+			const { withinUnmetered, withinMetered } = countWithinRadius(
 				lon,
 				lat,
-				allSpots
+				allSpots,
+				RADIUS_MILES
 			);
 			const meterDistricts = meterDistrictsWithinRadius(lon, lat, allSpots, RADIUS_MILES);
+			/** @type {ClosestSpotResult | null} */
+			const closest = await findWalkingClosestSpot(lon, lat, allSpots, { maxCandidates: 120 });
 
 			if (searchMarker) {
 				searchMarker.remove();
@@ -570,11 +711,31 @@
 			map.flyTo({ center: [lon, lat], zoom: 15, essential: true });
 
 			if (closest) {
+				const caretEl = document.createElement('div');
+				caretEl.className = 'closest-parking-caret';
+				caretEl.textContent = '▼';
+				caretEl.title = closest.usedWalkingRouting
+					? 'Shortest walk from your search'
+					: 'Closest by straight-line distance';
+				caretEl.setAttribute(
+					'aria-label',
+					closest.usedWalkingRouting
+						? 'Shortest walking-time motorcycle parking spot'
+						: 'Closest motorcycle parking spot by straight-line distance'
+				);
+				closestSpotMarker = new maplibregl.Marker({
+					element: caretEl,
+					anchor: 'bottom',
+					offset: [0, -5]
+				})
+					.setLngLat([closest.lon, closest.lat])
+					.addTo(map);
+
 				searchSummary = {
 					address,
 					lon,
 					lat,
-					closest,
+					closest: { ...closest, label: formatTitleCase(closest.label) },
 					withinUnmetered,
 					withinMetered,
 					meterDistricts
@@ -600,8 +761,9 @@
 	<h1>San Francisco Motorcycle Parking Helper</h1>
 
 	<p class="intro">
-		Search a location to find the closest dedicated motorcycle parking spots. Unmetered spaces are shown in
-		<strong class="color-black">black</strong> and metered spaces in <strong class="color-orange">orange</strong>.
+		Search a location to find the dedicated motorcycle parking areas with the shortest walking time from your pin. Unmetered areas are
+		<strong class="color-black">black</strong>, metered areas are <strong class="color-orange">orange</strong>, and
+		<strong class="color-teal">teal</strong> marks SFMTA garages and lots that list a motorcycle rate.
 	</p>
 
 	<form class="search-form" onsubmit={(e) => { e.preventDefault(); handleSearch(); }}>
@@ -630,33 +792,31 @@
 	{#if searchSummary && searchSummary.closest}
 		<section class="results" aria-live="polite">
 			<p>
-				The closest parking is a {searchSummary.closest.kind === 'metered' ? 'metered' : 'unmetered'} space at <strong>{searchSummary.closest.label}</strong> about <strong>{searchSummary.closest.distanceMiles.toFixed(2)} miles</strong> away.
+				The closest dedicated parking is a {searchSummary.closest.kind === 'metered' ? 'metered' : 'unmetered'} space at <strong>{searchSummary.closest.label}</strong>, {closestDistanceCaption(searchSummary.closest)} away.
 				
 				{#if searchSummary.closest.kind === 'metered' && searchSummary.closest.rateArea}
 					It {searchSummary.closest.rateArea == "MC5" ? 'has' : 'has a rate of'} <strong>{motorcycleDictionaryRateSummary(searchSummary.closest.rateArea)}</strong>
 				{/if}
-			</p>
 			
-			
-			{#if searchSummary.withinUnmetered > 0 || searchSummary.withinMetered > 0}
-			<p>
-				Within 0.2 miles there {searchSummary.withinUnmetered == 1 ? 'is' : 'are'} 
-				<strong>{searchSummary.withinUnmetered} unmetered</strong> 
-				and <strong class="color-orange">{searchSummary.withinMetered} metered</strong> 
-				{searchSummary.withinMetered == 1 ? 'space' : 'spaces'}.
-			</p>
-			{/if}
+				{#if searchSummary.withinUnmetered > 0 || searchSummary.withinMetered > 0}
+					Within 0.2 miles there {searchSummary.withinUnmetered == 1 ? 'is' : 'are'} 
+					<strong>{searchSummary.withinUnmetered} unmetered</strong> 
+					and <strong class="color-orange">{searchSummary.withinMetered} metered</strong> 
+					{searchSummary.withinMetered == 1 ? 'space' : 'spaces'}.
+				
+				{/if}
+		    </p>
 
 			{#if searchSummary.meterDistricts.length > 0}
-				<h2 class="results-sub">Nearby meter pricing districts</h2>
-				<hr />
+				<h2 class="results-sub border-top">Nearby meter pricing districts</h2>
+				
 				<ul class="results-rate-list">
 					{#each searchSummary.meterDistricts as d}
 						<div class="info-card">	
 							<strong><code>{d.rateArea}</code></strong>
 							&mdash; {d.count} metered space{d.count === 1 ? '' : 's'}
 							<ul>
-								<li>Rate: <strong>{motorcycleDictionaryRateSummary(d.rateArea)}</strong></li>
+								<li>Rate: {motorcycleDictionaryRateSummary(d.rateArea)}</li>
 								<li>Smart meter: {d.smartY} yes / {d.smartN} no</li>
 							</ul>
 							<!-- <span class="results-rate-desc">{rateAreaDescription(d.rateArea)}</span> -->
@@ -668,7 +828,8 @@
 	{/if}
 
 	<p class="attribution">
-		Map tiles © <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a>. Parking data: <a href="https://data.sfgov.org/browse?category=Transportation" target="_blank">City of San Francisco open data</a> as of April 23, 2026. Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors.
+		Map tiles © <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a>. Street parking: <a href="https://data.sfgov.org/browse?category=Transportation" target="_blank">City of San Francisco open data</a> (Apr 2026). Garages/lots with motorcycle rates: <a href="https://www.sfmta.com/garages-lots-list?field_garage_services_value=Motorcycle+Rate&amp;field_neighborhoods_target_id_verf=All&amp;field_parking_type_value=All" target="_blank" rel="noopener noreferrer">SFMTA</a> list (Apr 2026); map points geocoded with <a href="https://nominatim.openstreetmap.org/" target="_blank" rel="noopener noreferrer">Nominatim</a>. Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors.
+	<span class="routing-note">Walking time uses OpenStreetMap paths via a public OSRM demo router (dead ends and one-way rules included where mapped).</span>
 	</p>
 </div>
 
@@ -717,7 +878,6 @@
 	}
 
 	.map-wrap {
-		width: 100%;
 		height: min(50vh, 520px);
 		border-radius: var(--radius);
 		border: 1px solid var(--border);
@@ -756,7 +916,11 @@
 	.color-orange {
 		color: var(--olivetti-orange);
 	}
-	
+
+	.color-teal {
+		color: var(--olivetti-teal);
+	}
+
 	.info-card {
 		padding: 0.75rem 1rem;
 		border: 1px solid var(--border);
@@ -785,14 +949,8 @@
 
 	.results-sub {
 		margin: 1.25rem 0 0.5rem;
-		font-size: var(--text-lg);
-		font-weight: var(--font-weight-medium);
-	}
-
-	.results-rate-note {
 		font-size: var(--text-base);
-		color: var(--muted-foreground);
-		margin: 0 0 0.75rem;
+		font-weight: var(--font-weight-medium);
 	}
 
 	.results-rate-list {
@@ -800,6 +958,20 @@
 		flex-wrap: wrap;
 		gap: 0.5rem;
 		padding: 0;
+	}
+
+	.border-top {
+		border-top: 1px solid var(--border);
+		padding-top: 1rem;
+		margin-top: 1rem;
+	}
+
+	.routing-note {
+		display: block;
+		margin-top: 0.5rem;
+		font-size: var(--text-sm);
+		color: var(--muted-foreground);
+		line-height: 1.45;
 	}
 
 
@@ -852,4 +1024,16 @@
 		font-size: var(--text-sm);
 		color: var(--destructive);
 	}
+
+	:global(.closest-parking-caret) {
+		color: var(--olivetti-charcoal);
+		font-size: 1.5rem;
+		font-weight: var(--font-weight-black);
+		line-height: 0.75;
+		font-family: var(--font-body), sans-serif;
+		pointer-events: none;
+		text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+		user-select: none;
+	}
+
 </style>
