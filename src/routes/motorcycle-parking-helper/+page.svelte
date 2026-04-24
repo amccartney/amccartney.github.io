@@ -305,12 +305,14 @@
 				maxBounds: [
 					[SF_BBOX.minLon - 0.08, SF_BBOX.minLat - 0.08],
 					[SF_BBOX.maxLon + 0.08, SF_BBOX.maxLat + 0.08]
-				]
+				],
+				attributionControl: false
 			});
 			map = m;
 			m.addControl(new maplibregl.NavigationControl(), 'top-right');
 			m.dragPan.disable();
 			m.scrollZoom.disable();
+			// m.addControl(new maplibregl.AttributionControl({ compact: true }));
 
 			m.on('load', () => {
 				if (cancelled) return;
@@ -508,7 +510,7 @@
 	{/if}
 
 	<p class="attribution">
-		Map tiles © Stadia Maps. Parking data: City of San Francisco open data as of April 23, 2026.
+		Map tiles © <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a>. Parking data: <a href="https://data.sfgov.org/browse?category=Transportation" target="_blank">City of San Francisco open data</a> as of April 23, 2026. Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors.
 	</p>
 </div>
 
