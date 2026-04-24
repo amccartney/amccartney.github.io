@@ -829,7 +829,7 @@
 	{/if}
 
 	<p class="attribution">
-		Map tiles © <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a>. Street parking: <a href="https://data.sfgov.org/browse?category=Transportation" target="_blank">City of San Francisco open data</a> (Apr 2026). Garages/lots with motorcycle rates: <a href="https://www.sfmta.com/garages-lots-list?field_garage_services_value=Motorcycle+Rate&amp;field_neighborhoods_target_id_verf=All&amp;field_parking_type_value=All" target="_blank" rel="noopener noreferrer">SFMTA</a> list (Apr 2026); map points geocoded with <a href="https://nominatim.openstreetmap.org/" target="_blank" rel="noopener noreferrer">Nominatim</a>. Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors.
+		Map tiles © <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a>. Parking data: <a href="https://data.sfgov.org/browse?category=Transportation" target="_blank">City of S.F.</a> and <a href="https://www.sfmta.com/garages-lots-list?field_garage_services_value=Motorcycle+Rate&amp;field_neighborhoods_target_id_verf=All&amp;field_parking_type_value=All" target="_blank" rel="noopener noreferrer">SFMTA</a> (April 2026). Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors.
 	<span class="routing-note">Walking time uses OpenStreetMap paths via a public OSRM demo router (dead ends and one-way rules included where mapped).</span>
 	</p>
 </div>
