@@ -60,8 +60,8 @@
 
 <style>
   .legacy-page{ max-width:800px; margin: 20px auto; padding:0 20px; width: 100%; }
-  .lead{ width:100%; height:auto; border-radius:6px; margin:10px 0 18px; display:block; }
-  .video-wrap{ position:relative; width:100%; padding-top:56.25%; border-radius:8px; overflow:hidden; margin:10px 0 18px; }
+  .lead{ width:100%; height:auto; margin:20px 0 10px; display:block; }
+  .video-wrap{ position:relative; width:100%; padding-top:56.25%; overflow:hidden; margin:20px 0 10px; }
   .video-wrap iframe{ position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
   .content { margin-top:40px; }
   .content p { line-height:1.6; margin-bottom:1em;   }

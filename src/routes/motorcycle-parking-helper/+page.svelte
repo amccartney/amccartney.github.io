@@ -935,14 +935,14 @@
 		min-width: 0;
 		padding: 0.5rem 0.75rem;
 		border: 1px solid var(--border);
-		border-radius: var(--radius);
+		/* border-radius: var(--radius); */
 		background: var(--card);
 		color: var(--foreground);
 	}
 
 	.search-form button {
 		padding: 0.5rem 1rem;
-		border-radius: var(--radius);
+		/* border-radius: var(--radius); */
 		border: 1px solid var(--olivetti-charcoal);
 		background: var(--olivetti-charcoal);
 		color: var(--white);
@@ -958,7 +958,7 @@
 		container-type: inline-size;
 		container-name: mcl-map;
 		height: min(50vh, 520px);
-		border-radius: var(--radius);
+		/* border-radius: var(--radius); */
 		border: 1px solid var(--border);
 		overflow: hidden;
 		background: var(--muted);
@@ -974,7 +974,7 @@
 		padding: 1rem 1.25rem;
 		background: var(--card);
 		border: 1px solid var(--border);
-		border-radius: var(--radius);
+		/* border-radius: var(--radius); */
 	}
 
 	.results p {
@@ -1003,7 +1003,7 @@
 	.info-card {
 		padding: 0.75rem 1rem;
 		border: 1px solid var(--border);
-		border-radius: var(--radius);
+		/* border-radius: var(--radius); */
 		background: var(--muted);
 		font-size: var(--text-sm);
 		width: 33%;
@@ -1061,7 +1061,7 @@
 
 	:global(.mcl-hover-popup .maplibregl-popup-content) {
 		padding: 10px 12px;
-		border-radius: 6px;
+		/* border-radius: 6px; */
 		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 		max-width: 100%;
 		box-sizing: border-box;

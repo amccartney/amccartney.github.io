@@ -21,6 +21,13 @@
         "image": "/projects/dem-tweets.png"
     },
     {
+        "title": "Open Contractors",
+        "tag": "Interactive / Data",
+        "desc": "A web application for exploring and making sense of Department of Defense contracting data.",
+        "link": "/projects/open-contractors",
+        "image": null
+    },
+    {
         "title": "Who’s Winning the 2020 Presidential Delegate Count?",
         "tag": "Interactive / Tracker",
         "desc": "Live delegate tracker and explanations of delegate allocation during the 2020 primaries.",
@@ -40,6 +47,13 @@
         "desc": "Interactive coverage and result visualizations for the NYC mayoral primary.",
         "link": "https://www.bloomberg.com/graphics/2021-nyc-mayoral-primary/",
         "image": "/projects/2021-mayoral-primary.png"
+    },
+    {
+        "title": "The Lost and the Found",
+        "tag": "Interactive / Data",
+        "desc": "A web-base data app that allowed users to search through the NamUs databases of missing and unidentified persons.",
+        "link": "/projects/lost-and-found",
+        "image": "/projects/lostandfound.png"
     },
     {
         "title": "2024 India Live Election Results",
