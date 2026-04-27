@@ -1,18 +1,30 @@
 <script>
 	const pdfUrl = "/projects/Resume_4-2026.pdf";
+	const headshotSrc = "/am-headshot.jpg";
 </script>
 
 <svelte:head>
-	<title>Resume | Allison McCartney</title>
+	<title>About me | Allison McCartney</title>
 	<meta name="description" content="View and download Allison McCartney's resume." />
 </svelte:head>
 
 <section class="resume-shell">
 
-    <header class="resume-header">
-        <h1>Resume</h1>
-    </header>
+    <!-- <header class="resume-header">
+        <h1>About me</h1>
+    </header> -->
 
+	<section class="resume-intro" aria-label="About">
+		<div class="resume-intro-text">
+			<p>
+				I am a story editor for graphics and data at The New York Times based in San Francisco. I edit web-based stories, data visualizations and interactive graphics, mostly but not exclusively about elections and politics.   
+				I care about clarity, accuracy, and tools that hold up on deadline. When I'm not at the office, I can be found riding my Vespa or hanging around the Mission District.
+			</p>
+		</div>
+		<div class="resume-headshot-tile">
+			<img src={headshotSrc} alt="Allison McCartney" width="280" height="280" />
+		</div>
+	</section>
 
 	<section class="resume-content">
 
@@ -23,7 +35,7 @@
                     <h4>The New York Times</h4>
                     <p class="meta">Story Editor, Graphics and Data • <em>July 2022—Present</em></p>
                     <p class="description">
-                        I edit web-based stories, data visualizations and interactive graphics covering elections and politics. This includes our live results pages for U.S. and international elections as well as live vote tracking in Congress, live political debate coverage and our COVID tracker. This work means coordinating between the newsroom, designers, developers and product teams. It requires proficiency with design tools like Figma, Illustrator and Photoshop, and Javascript tools like Node, D3, and Svelte. I regularly use AI tools like Copilot and Claude to help me manage my schedule and task list, spin up internal tools and write code for projects. Additionally, I manage two graphics reporters who also work on elections and politics.
+                        I edit web-based stories, data visualizations and interactive graphics covering elections and politics. This includes our live results pages for U.S. and international elections as well as live vote tracking in Congress, live political debate coverage and our COVID tracker. This work means coordinating between the newsroom, designers, developers and engineering teams. It requires proficiency with design tools like Figma, Illustrator and Photoshop, and Javascript tools like Node, D3, and Svelte. I regularly use AI tools like Copilot and Claude to help me manage my schedule and task list, spin up internal tools and write code for projects. Additionally, I manage two graphics reporters who also work on elections and politics.
 
                     </p>
                 </div>
@@ -120,6 +132,73 @@
 		padding: 0 1.25rem;
 	}
 
+	.resume-intro {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		gap: 1.75rem;
+		margin-bottom: 2rem;
+	}
+
+	.resume-intro-text {
+		flex: 1;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+        padding-top: 1rem;
+	}
+
+	.resume-intro-text p {
+		margin: 0;
+		color: var(--olivetti-charcoal);
+		line-height: 1.55;
+		font-size: var(--text-base);
+	}
+
+	/* Matches portfolio project thumbnails (Card.svelte .tile img + overlay) */
+	.resume-headshot-tile {
+		position: relative;
+		flex-shrink: 0;
+		width: min(200px, 38vw);
+		overflow: hidden;
+		border-radius: 2px;
+	}
+
+	.resume-headshot-tile img {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 1;
+		object-fit: cover;
+		/* filter: grayscale(100%) contrast(0.95); */
+	}
+
+	.resume-headshot-tile::after {
+		/* content: "";
+		position: absolute;
+		inset: 0;
+		background-color: #595652;
+		mix-blend-mode: overlay;
+		pointer-events: none; */
+	}
+
+	@media (max-width: 640px) {
+		.resume-intro {
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+		}
+
+        .resume-intro-text {
+            padding-top: 0;
+            text-align: left;
+        }
+
+		.resume-headshot-tile {
+			width: min(220px, 70vw);
+		}
+	}
 
 	.resume-header {
 		margin-bottom: 1rem;

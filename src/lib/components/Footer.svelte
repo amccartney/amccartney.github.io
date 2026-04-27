@@ -1,6 +1,6 @@
 <footer>
         <nav>
-            <a href="/resume">Resume</a>
+            <a href="/resume">About me</a>
             <a href="https://www.linkedin.com/in/allisonmccartney/">LinkedIn</a>
             <a href="mailto:allison.n.mccartney+portfoliowebsite@gmail.com">Contact</a>
         </nav>
