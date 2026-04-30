@@ -9,7 +9,7 @@
     <div class="header-content">
 		<div class="brand">
 			<!-- <ProfileMark size={36} /> -->
-			<h2><a href="/">Allison McCartney</a></h2>
+			<h2><a href="/">ALLISON McCARTNEY</a></h2>
 		</div>
     </div>
 </header>
@@ -33,11 +33,10 @@
 	}
 
 	.header-content h2 {
-		/* font-size: 1.5rem; */
 		margin: 0;
-		font-weight: 900;
+		/* font-weight: 900; */
 		color: var(--olivetti-charcoal);
-		text-transform: uppercase;
+		/* text-transform: uppercase; */
 	}
 
 	.brand { display: flex; align-items: center; gap: 12px; }
