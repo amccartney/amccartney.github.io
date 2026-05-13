@@ -1,12 +1,5 @@
 [
     {
-        "title": "The Most Detailed Map of the N.Y.C. Mayoral Election",
-        "tag": "Interactive / Map",
-        "desc": "Precinct-level map and filters showing detailed results from the NYC mayoral primary.",
-        "link": "https://www.nytimes.com/interactive/2025/11/04/us/elections/nyc-mayor-results-precinct-map.html",
-        "image": "/projects/mayoral-map.png"
-    },
-    {
         "title": "What Fracking Looks Like Underground",
         "tag": "Interactive / Data",
         "desc": "Animated explainer of how hydraulic fracking fluid spreads underground, based on real data from a fracking operation.",
@@ -14,7 +7,14 @@
         "image": "/projects/fracking-opt.gif"
     },
     {
-        "title": "What the Democratic Presidential Candidates Care About, in 44,000 Tweets",
+        "title": "The Most Detailed Map of the 2025 N.Y.C. Mayoral Election",
+        "tag": "Interactive / Map",
+        "desc": "Precinct-level map and filters showing detailed results from the NYC mayoral primary.",
+        "link": "https://www.nytimes.com/interactive/2025/11/04/us/elections/nyc-mayor-results-precinct-map.html",
+        "image": "/projects/mayoral-map.png"
+    },
+    {
+        "title": "What the 2020 Democratic Presidential Candidates Care About, in 44,000 Tweets",
         "tag": "Interactive / Data",
         "desc": "Topic analysis of candidate tweets and published policy plans during the 2020 primary.",
         "link": "https://www.bloomberg.com/graphics/2020-democratic-presidential-candidate-policies/",
@@ -33,13 +33,6 @@
         "desc": "Live delegate tracker and explanations of delegate allocation during the 2020 primaries.",
         "link": "https://www.bloomberg.com/graphics/2020-presidential-delegates-tracker/",
         "image": "/projects/delegates.png"
-    },
-    {
-        "title": "Who’s Running for President in 2024?",
-        "tag": "Interactive / Politics",
-        "desc": "An interactive guide to the candidates running for president in 2024, with bios, policy positions and campaign finance data.",
-        "link": "https://www.nytimes.com/interactive/2023/us/politics/presidential-candidates-2024.html",
-        "image": "/projects/presidential-candidates.png"
     },
     {
         "title": "2021 N.Y.C. Mayoral Primary Results",
@@ -124,13 +117,6 @@
         "desc": "Story with interactive graphics showing how Ford Explorer owners have reported health symptoms they attribute to the vehicle’s emissions, based on data from the EPA and consumer complaints.",
         "link": "https://www.bloomberg.com/graphics/2019-ford-explorer-owners-say-suvs-making-them-sick/",
         "image": "/projects/ford-emissions.gif"
-    },
-    {
-        "title": "Spain General Election Results",
-        "tag": "Interactive / International",
-        "desc": "Province-level results and analysis for Spain’s general election.",
-        "link": "https://www.nytimes.com/interactive/2023/07/23/world/europe/results-spain-election.html",
-        "image": "/projects/spain.png"
     },
     {
         "title": "Iowa Republican Precinct Results",

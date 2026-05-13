@@ -1,21 +1,34 @@
 <script>
-    export let title;
-    export let link;
-    export let image;
-    export let index;
+	import { onMount } from "svelte";
+	import projectImageDimensions from "$lib/data/projectImageDimensions";
 
-    console.log(index)
+	export let title;
+	export let link;
+	export let image;
+	export let index;
 
-    let colors = [
-        "red",
-        "blue",
-        "green",
-    ];
+	let colors = ["red", "blue", "green"];
+	let imgElement;
+	let isImageLoaded = false;
 
-    function nextColor() {
-        let i = index % colors.length;
-        return colors[i];   
-    }
+	$: imageDimensions = image ? projectImageDimensions[image] : null;
+	$: imageStyle = imageDimensions
+		? `--image-width: ${imageDimensions.width}; --image-height: ${imageDimensions.height};`
+		: undefined;
+	$: if (image) {
+		isImageLoaded = false;
+	}
+
+	onMount(() => {
+		if (imgElement?.complete) {
+			isImageLoaded = true;
+		}
+	});
+
+	function nextColor() {
+		let i = index % colors.length;
+		return colors[i];
+	}
 </script>
 
 <div class="project-card transition-transform duration-300">
@@ -24,8 +37,26 @@
     </div>
     <article class="tile {nextColor()}">
         {#if image}
-        <a class="tile-link" href={link} aria-label={title}>
-            <img src={image} alt={title} loading="lazy" />
+        <a
+            class="tile-link"
+            class:has-dimensions={!!imageDimensions}
+            class:is-loaded={isImageLoaded}
+            href={link}
+            aria-label={title}
+            style={imageStyle}
+        >
+            <img
+                bind:this={imgElement}
+                src={image}
+                alt={title}
+                loading="lazy"
+                decoding="async"
+                width={imageDimensions?.width}
+                height={imageDimensions?.height}
+                class:loaded={isImageLoaded}
+                on:load={() => (isImageLoaded = true)}
+                on:error={() => (isImageLoaded = true)}
+            />
         </a>
         {/if}
         <a 
@@ -57,20 +88,46 @@
         display: block;
         width: 100%;
         overflow: hidden;
+        position: relative;
+        background: #f1f1ef;
+    }
+    .tile-link.has-dimensions {
+        aspect-ratio: var(--image-width) / var(--image-height);
+    }
+    .tile-link::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background: linear-gradient(90deg, #ece9e4 25%, #f6f4f0 50%, #ece9e4 75%);
+        background-size: 200% 100%;
+        animation: image-placeholder 1.2s ease-in-out infinite;
+        transition: opacity 200ms ease;
+    }
+    .tile-link.is-loaded::before {
+        opacity: 0;
+        animation: none;
     }
 
     .tile img {
         display: block;
         width: 100%;
         height: auto;
+        position: relative;
+        z-index: 1;
+        opacity: 0;
         object-fit: cover;
         filter: grayscale(100%) contrast(0.95);
-        transition: transform 300ms ease, filter 300ms ease;
+        transition: opacity 200ms ease, transform 300ms ease, filter 300ms ease;
+    }
+    .tile img.loaded {
+        opacity: 1;
     }
     .tile .tile-link::after {
         content: "";
         position: absolute;
         top: 0; left: 0; width: 100%; height: 100%;
+        z-index: 2;
         background-color: #595652; /* Semi-transparent Red */
         mix-blend-mode: overlay; /* Optional: blends color with image */
         pointer-events: none;
@@ -120,5 +177,14 @@
         padding-bottom: 0.6rem;
         display: inline-block;
         width: 100%;
+    }
+
+    @keyframes image-placeholder {
+        from {
+            background-position: 200% 0;
+        }
+        to {
+            background-position: -200% 0;
+        }
     }
 </style>
