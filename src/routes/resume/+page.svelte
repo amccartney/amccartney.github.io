@@ -17,7 +17,7 @@
 	<section class="resume-intro" aria-label="About">
 		<div class="resume-intro-text">
 			<p>
-				I am a story editor for graphics and data at The New York Times based in San Francisco. I edit web-based stories, data visualizations and interactive graphics, mostly but not exclusively about elections and politics.   
+				I am a story editor for graphics and data at <a href="https://www.nytco.com/press/allison-mccartney-is-joining-the-graphics-desk/" target="_blank" rel="noopener noreferrer">The New York Times</a> based in San Francisco. I edit web-based stories, data visualizations and interactive graphics, mostly but not exclusively about elections and politics.   
 				I care about clarity, accuracy, and tools that hold up on deadline. When I'm not at the office, I can be found riding my Vespa or hanging around the Mission District.
 			</p>
 		</div>

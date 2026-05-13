@@ -13,6 +13,7 @@
 	import { formatTitleCase } from '$lib/formatTitleCase';
 
 	const RADIUS_MILES = 0.2;
+	const UNCLUSTER_ZOOM = 15;
 	const SF_BBOX = { minLon: -122.52, minLat: 37.70, maxLon: -122.35, maxLat: 37.84 };
 	const UNMETERED_CSV = '/data/Motorcycle_Parking_-_Unmetered_20260423.csv';
 	const METERED_CSV = '/data/Metered_motorcycle_spaces_20260423.csv';
@@ -525,12 +526,30 @@
 				]);
 				m.addSource('metered', {
 					type: 'geojson',
+					data: /** @type {any} */ (spotsToFeatureCollection(combinedSpots, 'metered'))
+				});
+				m.addSource('metered-clustered', {
+					type: 'geojson',
 					data: /** @type {any} */ (meteredSpotsToClusteredFeatureCollection(combinedSpots))
+				});
+				m.addLayer({
+					id: 'metered-circles-clustered',
+					type: 'circle',
+					source: 'metered-clustered',
+					maxzoom: UNCLUSTER_ZOOM,
+					paint: {
+						'circle-radius': spotCircleRadius,
+						'circle-color': '#ff6b35',
+						'circle-opacity': 0.5,
+						'circle-stroke-width': 1,
+						'circle-stroke-color': '#ff6b35'
+					}
 				});
 				m.addLayer({
 					id: 'metered-circles',
 					type: 'circle',
 					source: 'metered',
+					minzoom: UNCLUSTER_ZOOM,
 					paint: {
 						'circle-radius': spotCircleRadius,
 						'circle-color': '#ff6b35',
@@ -665,8 +684,8 @@
 				m.on('mousemove', (e) => {
 					const layers = /** @type {string[]} */ (
 						garages.length > 0
-							? ['garages-circles', 'unmetered-circles', 'metered-circles']
-							: ['unmetered-circles', 'metered-circles']
+							? ['garages-circles', 'unmetered-circles', 'metered-circles', 'metered-circles-clustered']
+							: ['unmetered-circles', 'metered-circles', 'metered-circles-clustered']
 					);
 					const feats = m.queryRenderedFeatures(e.point, { layers });
 					if (!feats.length) {
@@ -850,7 +869,7 @@
 			id="address-search"
 			type="search"
 			autocomplete="street-address"
-			placeholder="e.g. The Ferry Building"
+			placeholder="e.g. The Ferry Building, Transamerica Pyramid"
 			bind:value={searchQuery}
 			disabled={loading}
 		/>
