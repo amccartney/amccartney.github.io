@@ -741,7 +741,7 @@
 			const min = Math.max(1, Math.round(c.walkingDurationSec / 60));
 			const walkMi = c.distanceMiles.toFixed(2);
 			const bird = c.birdMiles.toFixed(2);
-			return `about a ${min} min walk (${walkMi})`;
+			return `about a ${min} min walk (${walkMi} miles)`;
 		}
 		return `about ${c.birdMiles.toFixed(2)} mi straight-line (walking route unavailable)`;
 	}
