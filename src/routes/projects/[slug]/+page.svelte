@@ -42,7 +42,7 @@
     {/if}
   </header>
 
-  <section class="content" bind:this={contentSection}>
+  <section class="content">
     <p class="description">
         {@html project.content}
     </p>
