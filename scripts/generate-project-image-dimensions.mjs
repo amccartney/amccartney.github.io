@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -147,7 +148,49 @@ function parseWebp(buffer) {
 		};
 	}
 
+	if (chunkType === "VP8 ") {
+		const dataStart = 20;
+		const startCodeOffset = dataStart + 3;
+
+		if (
+			buffer[startCodeOffset] === 0x9d &&
+			buffer[startCodeOffset + 1] === 0x01 &&
+			buffer[startCodeOffset + 2] === 0x2a
+		) {
+			return {
+				width: buffer.readUInt16LE(startCodeOffset + 3) & 0x3fff,
+				height: buffer.readUInt16LE(startCodeOffset + 5) & 0x3fff
+			};
+		}
+	}
+
 	throw new Error(`Unsupported WEBP chunk type: ${chunkType}`);
+}
+
+function parseMp4(filePath) {
+	const output = execFileSync(
+		"ffprobe",
+		[
+			"-v",
+			"error",
+			"-select_streams",
+			"v:0",
+			"-show_entries",
+			"stream=width,height",
+			"-of",
+			"csv=p=0",
+			filePath
+		],
+		{ encoding: "utf8" }
+	).trim();
+
+	const [width, height] = output.split(",").map(Number);
+
+	if (!Number.isFinite(width) || !Number.isFinite(height)) {
+		throw new Error(`Could not read MP4 dimensions from ffprobe output: ${output}`);
+	}
+
+	return { width, height };
 }
 
 function getImageDimensions(filePath, buffer) {
@@ -165,6 +208,8 @@ function getImageDimensions(filePath, buffer) {
 			return parseSvg(buffer);
 		case ".webp":
 			return parseWebp(buffer);
+		case ".mp4":
+			return parseMp4(filePath);
 		default:
 			throw new Error(`Unsupported image format: ${extension}`);
 	}

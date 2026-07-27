@@ -8,19 +8,31 @@
 	export let index;
 
 	let colors = ["red", "blue", "green"];
-	let imgElement;
+	let mediaElement;
 	let isImageLoaded = false;
 
+	$: isVideo = typeof image === "string" && /\.mp4$/i.test(image);
+	$: poster = isVideo ? image.replace(/\.mp4$/i, "-poster.webp") : undefined;
 	$: imageDimensions = image ? projectImageDimensions[image] : null;
 	$: imageStyle = imageDimensions
 		? `--image-width: ${imageDimensions.width}; --image-height: ${imageDimensions.height};`
 		: undefined;
+	$: isPriority = typeof index === "number" && index < 4;
 	$: if (image) {
 		isImageLoaded = false;
 	}
 
 	onMount(() => {
-		if (imgElement?.complete) {
+		if (!mediaElement) return;
+
+		if (isVideo) {
+			if (mediaElement.readyState >= 2) {
+				isImageLoaded = true;
+			}
+			return;
+		}
+
+		if (mediaElement.complete) {
 			isImageLoaded = true;
 		}
 	});
@@ -28,6 +40,10 @@
 	function nextColor() {
 		let i = index % colors.length;
 		return colors[i];
+	}
+
+	function markLoaded() {
+		isImageLoaded = true;
 	}
 </script>
 
@@ -45,18 +61,37 @@
             aria-label={title}
             style={imageStyle}
         >
+            {#if isVideo}
+            <video
+                bind:this={mediaElement}
+                src={image}
+                poster={poster}
+                width={imageDimensions?.width}
+                height={imageDimensions?.height}
+                autoplay
+                muted
+                loop
+                playsinline
+                preload={isPriority ? "auto" : "metadata"}
+                class:loaded={isImageLoaded}
+                on:loadeddata={markLoaded}
+                on:error={markLoaded}
+            ></video>
+            {:else}
             <img
-                bind:this={imgElement}
+                bind:this={mediaElement}
                 src={image}
                 alt={title}
-                loading="lazy"
+                loading={isPriority ? "eager" : "lazy"}
+                fetchpriority={isPriority ? "high" : "auto"}
                 decoding="async"
                 width={imageDimensions?.width}
                 height={imageDimensions?.height}
                 class:loaded={isImageLoaded}
-                on:load={() => (isImageLoaded = true)}
-                on:error={() => (isImageLoaded = true)}
+                on:load={markLoaded}
+                on:error={markLoaded}
             />
+            {/if}
         </a>
         {/if}
         <a 
@@ -109,7 +144,8 @@
         animation: none;
     }
 
-    .tile img {
+    .tile img,
+    .tile video {
         display: block;
         width: 100%;
         height: auto;
@@ -120,7 +156,11 @@
         filter: grayscale(100%) contrast(0.95);
         transition: opacity 200ms ease, transform 300ms ease, filter 300ms ease;
     }
-    .tile img.loaded {
+    .tile video {
+        pointer-events: none;
+    }
+    .tile img.loaded,
+    .tile video.loaded {
         opacity: 1;
     }
     .tile .tile-link::after {
@@ -149,7 +189,8 @@
         background-color: rgba(255, 0, 0, 0); /* Fully Transparent on Hover */
     }
 
-    .tile:hover img {
+    .tile:hover img,
+    .tile:hover video {
         transform: scale(1.03);
         filter: grayscale(0%) contrast(1);
     }
