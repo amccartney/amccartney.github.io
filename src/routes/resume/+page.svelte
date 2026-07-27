@@ -5,7 +5,7 @@
 
 <svelte:head>
 	<title>About me | Allison McCartney</title>
-	<meta name="description" content="View and download Allison McCartney's resume." />
+	<meta name="description" content="View and download Allison McCartney’s resume." />
 </svelte:head>
 
 <section class="resume-shell">
@@ -18,7 +18,7 @@
 		<div class="resume-intro-text">
 			<p>
 				I am a story editor for graphics and data at <a href="https://www.nytco.com/press/allison-mccartney-is-joining-the-graphics-desk/" target="_blank" rel="noopener noreferrer">The New York Times</a> based in San Francisco. I edit web-based stories, data visualizations and interactive graphics, mostly but not exclusively about elections and politics.   
-				I care about clarity, accuracy, and tools that hold up on deadline. When I'm not at the office, I can be found riding my Vespa or hanging around the Mission District.
+				I care about clarity, accuracy, and tools that hold up on deadline. When I’m not at the office, I can be found riding my Vespa or hanging around the Mission District.
 			</p>
 		</div>
 		<div class="resume-headshot-tile">
